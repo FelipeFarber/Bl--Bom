@@ -3,112 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blô Bom - Delícias Caseiras</title>
+    <title>Blôbom</title>
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&family=Lavishly+Yours&family=Montserrat:wght@500&family=Syne:wght@700&display=swap" rel="stylesheet">
+    <script>
+      const produtos = [
+    {
+        id: 'chocolate-01',
+        nome: 'Bolo de Chocolate ',
+        imagem: 'images/bolodechocolate.jpeg',
+        preco: 30,
+        descricao: 'O clássico aperfeiçoado com chocolate 70% cacau',
+        ingredientes: [
+            '',
+            '',
+            //...
+        ]
+        
+    },{
+            nome: 'Bolo de Laranja',
+            imagem: 'images/bolodelaranja.jpg',
+            preco: 30,
+            descricao: 'Umidade perfeita ',
+            ingredientes: [
+                'Suco de laranja fresco',
+                'Casca de laranja orgânica',
+                'Iogurte natural',
+                'Fermento químico',
+                'Açúcar mascavo'
+            ]
+        },
+        {
+            nome: 'Bolo de limão',
+            imagem: 'images/bolodelimao.jpeg',
+            preco: 30,
+            descricao: '',
+            ingredientes: [
+                '',
+                
+            ]
+        },
+        {
+            nome: 'Bolo de milho',
+            imagem: 'images/bolodemilho.png',
+            preco: 30,
+            descricao: '',
+            ingredientes: [
+                '',
+                
+            ]
+        },
+        {
+            nome: 'Bolo de Abacaxi',
+            imagem: 'images/bolodeabacaxi.jpeg',
+            preco: 30,
+            descricao: '',
+            ingredientes: [
+                '',
+              
+            ]
+        },
+        {
+            nome: 'Bolo de Fubá Cremoso',
+            imagem: 'images/bolodefuba.jpeg',
+            preco: 75.00,
+            descricao: '',
+            ingredientes: [
+                '',
+                
+            ]
+        },
+        {
+            nome: 'Bolo Formigueiro',
+            imagem: 'images/boloformigueiro.jpg',
+            preco: 30,
+            descricao: '',
+            ingredientes: [
+                '',
+                
+            ]
+        },
+        {
+            nome: 'Bolo de Maçã e Canela',
+            imagem: 'images/bolodemaçaecanela.jpeg',
+            preco: 30,
+            descricao: '',
+            ingredientes: [
+                '',
+                
+            ]
+        },
+        {
+            nome: 'Bolo de Banana',
+            imagem: 'images/bolodebanana.jpeg',
+            preco: 30,
+            descricao: '',
+            ingredientes: [
+                'S',
+                '',
+                '',
+                'o',
+                ''
+            ]
+        },
+        {
+            nome: 'Bolo de Café',
+            imagem: 'images/bolodecafe.jpg',
+            preco: 30.00,
+            descricao: '',
+            ingredientes: [
+                '',
+                
+            ]
+        },
+       
+    //...
+];
     
+        function criarCardProduto(produto) {
+            return `
+                <div class="produto-card">
+                    <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem">
+                    <div class="produto-conteudo">
+                        <div class="produto-preco">R$ ${produto.preco.toFixed(2)}</div>
+                        <h3 class="produto-titulo">${produto.nome}</h3>
+                        <p class="produto-descricao">${produto.descricao}</p>
+                        <div class="produto-ingredientes">
+                            <strong>Ingredientes:</strong>
+                            ${produto.ingredientes.map(ing => `<span>• ${ing}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('produtos-grid');
+            produtos.forEach(produto => {
+                grid.innerHTML += criarCardProduto(produto);
+            });
+        });
+    </script>
+  
 </head>
+
+<div class="loading-screen">
+    <div class="spinner"></div>
+</div>
 <body>
-    <header>
-        <img src="logo.png" alt="Logo Blô Bom">
-        <h1>Blô Bom</h1>
-        <nav>
-            <ul>
-                <li><a href="#sobre">Sobre Nós</a></li>
-                <li><a href="#produtos">Produtos</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
+    <header id="mainHeader">
+        <div class="header-content">
+            <img src="images/icons/logo.svg" alt="Logo BlôBom" class="logo">
+            <nav>
+                <nav>
+                    <ul>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+            </nav>
+            <div class="logo-text">
+                Blôblom
+                
+            </div>
+        </div>
     </header>
-    
     <section id="sobre">
-        <h2>Sobre Nós</h2>
-        <p>Bem-vindo ao Blô Bom! Somos apaixonados por bolos caseiros, feitos com carinho e ingredientes selecionados para levar sabor e aconchego à sua mesa.</p>
-        <p>Nosso compromisso é oferecer produtos artesanais, sem conservantes artificiais, garantindo o gosto autêntico de bolo feito em casa. Seja para um café da manhã especial, um lanche da tarde ou uma celebração, temos o bolo perfeito para cada momento.</p>
-    </section>
+        <div class="sobre-container">
+            <div class="fundadores-grid">
+                <div class="fundador-card">
+                    <img src="images/Felipe.jpg" alt="Felipe" class="fundador-imagem">
+                    <h3 class="fundador-nome">Felipe</h3>
+                    <p class="fundador-funcao"></p>
+                    <p></p>
+                </div>
+                
+                <div class="fundador-card">
+                    <img src="images/Karine.jpg" alt="Karine" class="fundador-imagem">
+                    <h3 class="fundador-nome">Karine</h3>
+                    <p class="fundador-funcao"></p>
+                    <p></p>
+                </div>
+            </div>
     
-    <section id="produtos">
-        <h2>Nossos Produtos</h2>
-        <p>Conheça os nossos deliciosos sabores de bolo:</p>
-        <div class="produto-info">
-            <h3>Bolo de Chocolate</h3>
-            <p>Feito com chocolate 70% cacau e recheio de ganache</p>
-            <p>Preço: R$ 45,00 (15 fatias)</p>
+            <div class="sobre-texto">
+                <h2>Nossa História</h2>
+                <p></p>
+                
+                <p>Na BlôBom, cada bolo é uma obra de arte comestível. Usamos apenas ingredientes frescos e selecionados, sem conservantes ou aditivos artificiais.</p>
+                
+                <p>Nosso segredo? A combinação perfeita entre:</p>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✅ Técnicas de confeitaria</li>
+                    <li>✅ </li>
+                    <li>✅ Amor em cada camada</li>
+                </ul>
+            </div>
         </div>
     </section>
+    
+    <section id="produtos" class="section">
+        <div class="produtos-container">
+            <h2>Nossas Delícias</h2>
+            <div class="produtos-grid" id="produtos-grid"></div>
+        </div>
+    </section>
+    
     
     <section id="contato">
         <h2>Contato</h2>
         <p>Faça seu pedido ou tire suas dúvidas:</p>
         <div class="contato-botoes">
             <a href="https://wa.me/5511959426239" class="botao-whatsapp" target="_blank">
-                <img src="whatsapp-icon.png" alt="WhatsApp" style="height: 24px;">
+                <img src="images/icons/Whatsapp-logo.svg" alt="WhatsApp" style="height: 24px;">
                 Pedir pelo WhatsApp
             </a>
         </div>
-        <div style="margin-top: 30px;">
-            <h3>Nos siga nas redes sociais</h3>
-            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
-                <a href="#"><img src="instagram-icon.png" alt="Instagram" style="height: 32px;"></a>
-                
-            </div>
+        <a href="https://instagram.com/" 
+   class="botao-instagram" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   aria-label="Instagram">
+    <img src="images/icons/instagram-logo.svg" alt="Ícone do Instagram">
+</a>
+       
         </div>
     </section>
-    
+   
     <footer>
         <p>&copy; 2025 Blô Bom - Todos os direitos reservados.</p>
     </footer>
     
-    <script>
-        const imagens = document.querySelectorAll('.galeria img');
-        const pontosControle = document.querySelectorAll('.ponto-controle');
-        const produtoInfo = document.querySelector('.produto-info');
-        let index = 0;
-        let intervalo;
-
-        // Dados dos produtos (adicione mais conforme necessário)
-        const produtos = [
-            {
-                nome: 'Bolo de Chocolate',
-                descricao: 'Feito com chocolate 70% cacau e recheio de ganache',
-                preco: 'R$ 45,00 (15 fatias)'
-            },
-            // Adicione os demais produtos aqui...
-        ];
-
-        function atualizarProdutoInfo() {
-            produtoInfo.innerHTML = `
-                <h3>${produtos[index].nome}</h3>
-                <p>${produtos[index].descricao}</p>
-                <p>Preço: ${produtos[index].preco}</p>
-            `;
-        }
-
-        function trocarImagem(novoIndex) {
-            clearInterval(intervalo);
-            
-            imagens.forEach(img => img.classList.remove('ativo'));
-            pontosControle.forEach(ponto => ponto.classList.remove('ativo'));
-            
-            index = novoIndex;
-            imagens[index].classList.add('ativo');
-            pontosControle[index].classList.add('ativo');
-            
-            atualizarProdutoInfo();
-            
-            intervalo = setInterval(() => trocarImagem((index + 1) % imagens.length), 3000);
-        }
-
-        // Inicializar controles
-        document.querySelector('.galeria').insertAdjacentHTML('afterend', `
-            <div class="controles-galeria">
-                ${[...imagens].map((_, i) => `
-                    <div class="ponto-controle ${i === 0 ? 'ativo' : ''}" onclick="trocarImagem(${i})"></div>
-                `).join('')}
-            </div>
-        `);
-
-        // Iniciar slideshow
-        intervalo = setInterval(() => trocarImagem((index + 1) % imagens.length), 3000);
-    </script>
+   
 </body>
+
 </html>
