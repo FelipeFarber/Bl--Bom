@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blô Bom - Delícias Caseiras</title>
+    <link rel="stylesheet" href="styles/index.css">
+    
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo Blô Bom">
+        <h1>Blô Bom</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Bem-vindo ao Blô Bom! Somos apaixonados por bolos caseiros, feitos com carinho e ingredientes selecionados para levar sabor e aconchego à sua mesa.</p>
+        <p>Nosso compromisso é oferecer produtos artesanais, sem conservantes artificiais, garantindo o gosto autêntico de bolo feito em casa. Seja para um café da manhã especial, um lanche da tarde ou uma celebração, temos o bolo perfeito para cada momento.</p>
+    </section>
+    
+    <section id="produtos">
+        <h2>Nossos Produtos</h2>
+        <p>Conheça os nossos deliciosos sabores de bolo:</p>
+        <div class="produto-info">
+            <h3>Bolo de Chocolate</h3>
+            <p>Feito com chocolate 70% cacau e recheio de ganache</p>
+            <p>Preço: R$ 45,00 (15 fatias)</p>
+        </div>
+    </section>
+    
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Faça seu pedido ou tire suas dúvidas:</p>
+        <div class="contato-botoes">
+            <a href="https://wa.me/5511959426239" class="botao-whatsapp" target="_blank">
+                <img src="whatsapp-icon.png" alt="WhatsApp" style="height: 24px;">
+                Pedir pelo WhatsApp
+            </a>
+        </div>
+        <div style="margin-top: 30px;">
+            <h3>Nos siga nas redes sociais</h3>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
+                <a href="#"><img src="instagram-icon.png" alt="Instagram" style="height: 32px;"></a>
+                
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Blô Bom - Todos os direitos reservados.</p>
+    </footer>
+    
+    <script>
+        const imagens = document.querySelectorAll('.galeria img');
+        const pontosControle = document.querySelectorAll('.ponto-controle');
+        const produtoInfo = document.querySelector('.produto-info');
+        let index = 0;
+        let intervalo;
+
+        // Dados dos produtos (adicione mais conforme necessário)
+        const produtos = [
+            {
+                nome: 'Bolo de Chocolate',
+                descricao: 'Feito com chocolate 70% cacau e recheio de ganache',
+                preco: 'R$ 45,00 (15 fatias)'
+            },
+            // Adicione os demais produtos aqui...
+        ];
+
+        function atualizarProdutoInfo() {
+            produtoInfo.innerHTML = `
+                <h3>${produtos[index].nome}</h3>
+                <p>${produtos[index].descricao}</p>
+                <p>Preço: ${produtos[index].preco}</p>
+            `;
+        }
+
+        function trocarImagem(novoIndex) {
+            clearInterval(intervalo);
+            
+            imagens.forEach(img => img.classList.remove('ativo'));
+            pontosControle.forEach(ponto => ponto.classList.remove('ativo'));
+            
+            index = novoIndex;
+            imagens[index].classList.add('ativo');
+            pontosControle[index].classList.add('ativo');
+            
+            atualizarProdutoInfo();
+            
+            intervalo = setInterval(() => trocarImagem((index + 1) % imagens.length), 3000);
+        }
+
+        // Inicializar controles
+        document.querySelector('.galeria').insertAdjacentHTML('afterend', `
+            <div class="controles-galeria">
+                ${[...imagens].map((_, i) => `
+                    <div class="ponto-controle ${i === 0 ? 'ativo' : ''}" onclick="trocarImagem(${i})"></div>
+                `).join('')}
+            </div>
+        `);
+
+        // Iniciar slideshow
+        intervalo = setInterval(() => trocarImagem((index + 1) % imagens.length), 3000);
+    </script>
+</body>
+</html>
