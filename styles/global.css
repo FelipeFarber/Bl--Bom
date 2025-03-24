@@ -1,5 +1,5 @@
 :root {
-  --cor-primaria: #A1887F;
+  --cor-primaria: #6da37a;
   --cor-secundaria: #5D4037;
   --cor-fundo: #FFF8DC;
   --cor-texto: #5D4037;
@@ -20,6 +20,13 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px; /* Altura do header */
+ 
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Altura do header */
+
+.section {
+    scroll-margin-top: 100px; /* Compensar header fixo */
+}
 }
 
 
@@ -37,15 +44,17 @@ html {
 body {
   text-align: center;
   font-family: 'Arial', sans-serif;
+  min-height: 200vh;
   margin: 0;
-  padding: 0;
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
   scroll-behavior: smooth;
-  body {
+  padding-top: 120px; 
+  box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    font-weight: 400; /* Peso regular como padrão */
+    font-weight: 400; 
 }
+
 
 /* Estilos específicos para diferentes pesos */
 h1, h2, h3 {
@@ -59,54 +68,9 @@ h1, h2, h3 {
 .forte {
     font-weight: 500; /* Para ênfase média */
 }
-}
-
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid var(--cor-primaria);
-  border-radius: 50%;
-  border-top-color: transparent;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
 
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-nav ul li {
-  display: inline;
-}
-nav ul li a {
-  color: white;
-        text-decoration: none;
-        font-size: 1.1rem;
-        position: relative;
-        padding: 10px 15px;
-        border-radius: 8px;
-        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-nav a:hover {
-  color: #5db164;
-  text-shadow: 0 2px 8px rgba(255, 243, 224, 0.3);
-  }
-  nav a:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-    box-shadow: 0 4px 15px rgba(93, 64, 55, 0.2);
-}
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+
 .theme-toggle {
   position: fixed;
   left: 20px;
@@ -126,104 +90,8 @@ h2 {
   background-color: #D7CCC8;
 }
 
-#contato {
-  background-color: #39b462;
-}
-footer {
 
-  background-color: #A1887F;
-  color: white;
-  text-align: center;
-  padding: 5px;
-  width: 100%;
-  
-}
 
-.botao-whatsapp {
-  background-color: #25D366;
-  color: white;
-  padding: 15px 40px;
-  border-radius: 25px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  transition: transform 0.3s ease;
-}
-
-.botao-whatsapp:hover {
-  transform: scale(1.05);
-}
-
-.botao-instagram {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #FFDC80);
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  animation: pulse 2s infinite;
-}
-
-.botao-instagram:hover {
-  transform: scale(1.1) rotate(360deg);
-  box-shadow: 0 8px 25px rgba(253,29,29,0.4);
-}
-
-.botao-instagram img {
-  width: 50px;
-  height: 50px;
-  filter: brightness(0) invert(1);
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-.botao-instagram::after {
-  content: "Siga nosso Instagram!";
-  position: absolute;
-  right: 75px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #fff;
-  color: #E1306C;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  white-space: nowrap;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.botao-instagram:hover::after {
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .botao-instagram {
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-  }
-  
-  .botao-instagram img {
-      width: 28px;
-      height: 28px;
-  }
-}
 
 
 @media (max-width: 768px) {

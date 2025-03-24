@@ -121,6 +121,7 @@
                 
             ]
         },
+        
        
     //...
 ];
@@ -148,67 +149,109 @@
                 grid.innerHTML += criarCardProduto(produto);
             });
         });
-    </script>
-  
-</head>
+        function scrollParaProdutos() {
+        const produtosSection = document.getElementById('produtos');
+        const headerHeight = document.querySelector('header').offsetHeight;
+        
+        if(produtosSection) {
+            window.scrollTo({
+                top: produtosSection.offsetTop - headerHeight,
+                behavior: 'instant'
+            });
+        }
+    }
 
-<div class="loading-screen">
-    <div class="spinner"></div>
-</div>
+    // Modifique o event listener de DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', () => {
+        const grid = document.getElementById('produtos-grid');
+        produtos.forEach(produto => {
+            grid.innerHTML += criarCardProduto(produto);
+        });
+
+        // Remover loading screen e então scrollar
+        setTimeout(() => {
+            document.querySelector('.loading-screen').style.display = 'none';
+            scrollParaProdutos();
+            
+            // Forçar scroll suave após pequeno delay para browsers que precisam
+            setTimeout(() => {
+                window.scrollTo({
+                    top: produtosSection.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }, 1000);
+    });
+    </script>
+ 
+</head>
 <body>
-    <header id="mainHeader">
-        <div class="header-content">
-            <img src="images/icons/logo.svg" alt="Logo BlôBom" class="logo">
-            <nav>
-                <nav>
-                    <ul>
-                        <li><a href="#sobre">Sobre</a></li>
-                        <li><a href="#produtos">Produtos</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
-                </nav>
-            </nav>
-            <div class="logo-text">
-                Blôblom
-                
-            </div>
+    <div class="loading-screen">
+        <div class="logo-loading"></div>
+    </div>
+    <header class="header">
+        <!-- Nome (Esquerda) -->
+        <div class="header-nome">
+            <img src="images/icons/BlôBomLetra.svg" alt="BlôBom">
         </div>
+
+        <!-- Logo (Centro) -->
+        <div class="header-logo">
+            <img src="images/icons/Blôblom.svg" alt="Logo">
+        </div>
+
+        <!-- Navegação (Direita) -->
+        <nav class="nav-menu">
+            <a href="#produtos" class="nav-link">Produtos</a>
+            <a href="#contato" class="nav-link">Contato</a>
+        </nav>
+    
+
+        <script>
+            // Efeito de desaparecimento no scroll
+            let lastScroll = 0;
+            const header = document.querySelector('.header');
+            const headerHeight = header.offsetHeight;
+        
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                // Ajuste a sensibilidade do efeito (quanto maior o número, mais rápido desaparece)
+                const opacity = 1 - Math.min(currentScroll / 200, 1);
+                const blurValue = Math.min(currentScroll / 20, 5);
+                
+                header.style.opacity = opacity;
+                header.style.backdropFilter = `blur(${blurValue}px)`;
+                
+                // Efeito de "esconder" ao descer
+                if (currentScroll > lastScroll && currentScroll > headerHeight) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                
+                lastScroll = currentScroll;
+            });
+            function atualizarAlturaHeader() {
+    const header = document.querySelector('.header');
+    document.body.style.paddingTop = header.offsetHeight + 'px';
+}
+
+window.addEventListener('resize', atualizarAlturaHeader);
+window.addEventListener('load', atualizarAlturaHeader);
+        </script>
     </header>
-    <section id="sobre">
-        <div class="sobre-container">
-            <div class="fundadores-grid">
-                <div class="fundador-card">
-                    <img src="images/Felipe.jpg" alt="Felipe" class="fundador-imagem">
-                    <h3 class="fundador-nome">Felipe</h3>
-                    <p class="fundador-funcao"></p>
-                    <p></p>
-                </div>
-                
-                <div class="fundador-card">
-                    <img src="images/Karine.jpg" alt="Karine" class="fundador-imagem">
-                    <h3 class="fundador-nome">Karine</h3>
-                    <p class="fundador-funcao"></p>
-                    <p></p>
-                </div>
-            </div>
+   
+
+
+
+
+
+
+
+
     
-            <div class="sobre-texto">
-                <h2>Nossa História</h2>
-                <p></p>
-                
-                <p>Na BlôBom, cada bolo é uma obra de arte comestível. Usamos apenas ingredientes frescos e selecionados, sem conservantes ou aditivos artificiais.</p>
-                
-                <p>Nosso segredo? A combinação perfeita entre:</p>
-                <ul style="list-style: none; padding: 0;">
-                    <li>✅ Técnicas de confeitaria</li>
-                    <li>✅ </li>
-                    <li>✅ Amor em cada camada</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    
-    <section id="produtos" class="section">
+    <section id="produtos">
         <div class="produtos-container">
             <h2>Nossas Delícias</h2>
             <div class="produtos-grid" id="produtos-grid"></div>
@@ -217,30 +260,70 @@
     
     
     <section id="contato">
-        <h2>Contato</h2>
-        <p>Faça seu pedido ou tire suas dúvidas:</p>
-        <div class="contato-botoes">
-            <a href="https://wa.me/5511959426239" class="botao-whatsapp" target="_blank">
-                <img src="images/icons/Whatsapp-logo.svg" alt="WhatsApp" style="height: 24px;">
-                Pedir pelo WhatsApp
-            </a>
+    <div class="contato-container">
+        <div class="contato-criadores">
+            <!-- Criador 1 - Esquerda -->
+            <div class="criador-card">
+                <img src="images/felipe.jpg" alt="Felipe" class="criador-foto">
+                <h3 class="criador-nome">Felipe</h3>
+                <p class="criador-funcao">Criador Blôblom</p>
+                <p class="criador-desc"></p>
+            </div>
+
+            <!-- Links Centralizados -->
+            <div class="contato-links">
+                <h2>Faça seu pedido</h2>
+                <div class="contato-botoes">
+                    <a href="https://wa.me/5511959426239" class="botao-contato whatsapp">
+                        <img src="images/icons/Whatsapp-logo.svg" alt="WhatsApp">
+                        Enviar Mensagem
+                    </a>
+                    <a href="https://instagram.com/blobom" class="botao-contato instagram">
+                        <img src="images/icons/instagram-logo.svg" alt="Instagram">
+                        Siga no instagram!
+                    </a>
+                </div>
+            </div>
+
+            <!-- Criador 2 - Direita -->
+            <div class="criador-card">
+                <img src="images/karine.jpg" alt="Karine" class="criador-foto">
+                <h3 class="criador-nome">Karine</h3>
+                <p class="criador-funcao">Criadora Blôblom</p>
+                <p class="criador-desc"> </p>
+            </div>
         </div>
-        <a href="https://instagram.com/" 
-   class="botao-instagram" 
-   target="_blank" 
-   rel="noopener noreferrer"
-   aria-label="Instagram">
-    <img src="images/icons/instagram-logo.svg" alt="Ícone do Instagram">
-</a>
-       
-        </div>
-    </section>
+    </div>
+</section>
    
     <footer>
-        <p>&copy; 2025 Blô Bom - Todos os direitos reservados.</p>
+        <p>&copy; 2025 BlôBom - Todos os direitos reservados.</p>
     </footer>
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+        <span class="btn-text">Volte ao topo</span>
+    </button>
+    <script>
+        // Controle do botão
+        window.addEventListener('scroll', () => {
+            const backButton = document.querySelector('.back-to-top');
+            if (window.scrollY > 200) {
+                backButton.classList.add('visible');
+            } else {
+                backButton.classList.remove('visible');
+            }
+        });
     
-   
+        // Scroll suave
+        document.querySelector('.back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>

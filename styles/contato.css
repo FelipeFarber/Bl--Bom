@@ -1,0 +1,109 @@
+#contato {
+  background: #FFF8DC;
+  padding: 80px 20px;
+}
+
+.contato-container {
+  width: 100%;
+    height: auto;
+}
+
+.contato-criadores {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.criador-card {
+  text-align: center;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.criador-foto {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #A1887F;
+}
+
+.criador-nome {
+  color: #5D4037;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.criador-funcao {
+  color: #8D6E63;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.contato-links {
+  text-align: center;
+  padding: 40px;
+}
+
+.contato-links h2 {
+  color: #5D4037;
+  font-size: 2.2em;
+  margin-bottom: 30px;
+}
+
+.contato-botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  img {
+    display:flex;
+    margin: auto;
+    width: 10%;
+    height: auto;
+  }
+}
+
+.botao-contato {
+  padding: 15px 30px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.botao-contato:hover {
+  transform: translateY(-3px);
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.instagram {
+  background: linear-gradient(45deg, #405DE6, #833AB4, #C13584);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .contato-criadores {
+      grid-template-columns: 1fr;
+      gap: 30px;
+  }
+
+  .criador-card {
+      order: 2;
+  }
+
+  .contato-links {
+      order: 1;
+      padding: 20px;
+  }
+}
