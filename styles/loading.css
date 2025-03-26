@@ -9,36 +9,15 @@
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  opacity: 1;
   transition: opacity 0.5s ease;
 }
 
-.loading-screen.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.logo-loading {
+.loading-logo {
   width: 400px;
-  height: 400px;
-  animation: colorCycle 3s infinite;
-  background: url('../images/icons/Blôblom.svg') center/contain no-repeat;
-
+  animation:colorCycle 3s infinite
 }
 
-
-
-.logo-loading::after {
-  
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #000000;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-}
-
+/* Animação de pulsação */
 @keyframes colorCycle {
   0% {
       background-position: 0% 50%;
@@ -59,4 +38,9 @@
       width: 150px;
       height: 150px;
   }
+}
+/* Quando a página carregar */
+body.loaded .loading-screen {
+  opacity: 0;
+  pointer-events: none;
 }

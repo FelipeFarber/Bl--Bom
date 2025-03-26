@@ -1,105 +1,91 @@
+.produtos-container {
+  padding: 20px 20px 40px;
+  margin-top: 30px;
+}
+
+.produtos-titulo {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4rem;
+  padding-top: 20px;
+  color: #333;
+  margin: 30px 0;
+  text-transform: uppercase;
+  letter-spacing: 3px
+}
+
+.produtos-titulo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #E8A87C;
+  border-radius: 2px;
+}
+
+/* Versão mobile */
+@media (max-width: 768px) {
+  .produtos-titulo {
+      font-size: 2rem;
+      margin-bottom: 30px;
+  }
+}
+
 .produtos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 80px auto 0;
 }
 
 .produto-card {
-  background: white;
+  background: rgb(255, 255, 255);
   border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  position: relative;
-}
-
-.produto-card:hover {
-  transform: translateY(-5px);
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .produto-imagem {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
-  border-bottom: 3px solid #A1887F;
+  border-radius: 10px;
 }
 
 .produto-info {
-  padding: 20px;
-  position: relative;
-}
-
-.produto-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.produto-nome {
-  font-size: 1.4em;
-  color: #5D4037;
+  margin-top: 1rem;
 }
 
 .produto-preco {
-  background: #C5E1A5;
-  color: #5D4037;
-  padding: 5px 15px;
-  border-radius: 15px;
-  font-weight: bold;
+  font-size: 1.4em;
+  color: red;
+  margin: 0.5rem 0;
 }
 
 .produto-detalhes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.detalhe-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
   font-size: 0.9em;
+  color: #000000;
+  margin: 0.5rem 0;
 }
 
-.detalhe-item i {
-  color: #A1887F;
-  font-size: 1.2em;
+.btn-adicionar {
+  background: var(--cor-primaria);
+  color: #9efd9e;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
 }
 
-.alergenicos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 15px 0;
-}
-
-.alergenico-tag {
-  background: #FFECB3;
-  color: #5D4037;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 0.8em;
-  font-weight: 500;
-}
-
-.produto-ingredientes {
-  font-size: 0.9em;
-  color: #666;
-  margin-top: 15px;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .produto-detalhes {
-      grid-template-columns: 1fr;
-  }
-  
-  .produto-imagem {
-      height: 200px;
-  }
+.btn-adicionar:hover {
+  background: #4995a8;
+  transform: translateY(-2px);
 }

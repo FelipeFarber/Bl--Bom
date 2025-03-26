@@ -1,213 +1,313 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blôbom</title>
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&family=Lavishly+Yours&family=Montserrat:wght@500&family=Syne:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&family=Lavishly+Yours&family=Montserrat:wght@500&family=Syne:wght@700&display=swap"
+        rel="stylesheet">
+
     <script>
-      const produtos = [
-    {
-        id: 'chocolate-01',
-        nome: 'Bolo de Chocolate ',
-        imagem: 'images/bolodechocolate.jpeg',
-        preco: 30,
-        descricao: 'O clássico aperfeiçoado com chocolate 70% cacau',
-        ingredientes: [
-            '',
-            '',
-            //...
-        ]
-        
-    },{
-            nome: 'Bolo de Laranja',
-            imagem: 'images/bolodelaranja.jpg',
-            preco: 30,
-            descricao: 'Umidade perfeita ',
-            ingredientes: [
-                'Suco de laranja fresco',
-                'Casca de laranja orgânica',
-                'Iogurte natural',
-                'Fermento químico',
-                'Açúcar mascavo'
-            ]
-        },
-        {
-            nome: 'Bolo de limão',
-            imagem: 'images/bolodelimao.jpeg',
-            preco: 30,
-            descricao: '',
-            ingredientes: [
-                '',
-                
-            ]
-        },
-        {
-            nome: 'Bolo de milho',
-            imagem: 'images/bolodemilho.png',
-            preco: 30,
-            descricao: '',
-            ingredientes: [
-                '',
-                
-            ]
-        },
-        {
-            nome: 'Bolo de Abacaxi',
-            imagem: 'images/bolodeabacaxi.jpeg',
-            preco: 30,
-            descricao: '',
-            ingredientes: [
-                '',
-              
-            ]
-        },
-        {
-            nome: 'Bolo de Fubá Cremoso',
-            imagem: 'images/bolodefuba.jpeg',
-            preco: 75.00,
-            descricao: '',
-            ingredientes: [
-                '',
-                
-            ]
-        },
-        {
-            nome: 'Bolo Formigueiro',
-            imagem: 'images/boloformigueiro.jpg',
-            preco: 30,
-            descricao: '',
-            ingredientes: [
-                '',
-                
-            ]
-        },
-        {
-            nome: 'Bolo de Maçã e Canela',
-            imagem: 'images/bolodemaçaecanela.jpeg',
-            preco: 30,
-            descricao: '',
-            ingredientes: [
-                '',
-                
-            ]
-        },
-        {
-            nome: 'Bolo de Banana',
-            imagem: 'images/bolodebanana.jpeg',
-            preco: 30,
-            descricao: '',
-            ingredientes: [
-                'S',
-                '',
-                '',
-                'o',
-                ''
-            ]
-        },
-        {
-            nome: 'Bolo de Café',
-            imagem: 'images/bolodecafe.jpg',
-            preco: 30.00,
-            descricao: '',
-            ingredientes: [
-                '',
-                
-            ]
-        },
-        
-       
-    //...
-];
+        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        const produtos = [
+            {
+                id: 1,
+                nome: 'Bolo de Chocolate ',
+                imagem: 'images/bolodechocolate.jpeg',
+                preco: 35.00,
+                peso: '600g',
+                calorias: '350 kcal/fatia',
+                contem: ['Glúten', 'Lactose']
+            },
+            {
+                id: 2,
+                nome: 'Bolo de Laranja Natural',
+                imagem: 'images/bolodelaranja.jpg',
+                preco: 35.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+            {
+                id: 3,
+                nome: 'Bolo de Abacaxi',
+                imagem: 'images/bolodeabacaxi.jpeg',
+                preco: 35.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+            {
+                id: 4,
+                nome: 'Bolo de Banana',
+                imagem: 'images/bolodebanana.jpeg',
+                preco: 35.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+            {
+                id: 5,
+                nome: 'Bolo de Café',
+                imagem: 'images/bolodecafe.jpg',
+                preco: 35.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+            {
+                id: 6,
+                nome: 'Bolo de Fubá',
+                imagem: 'images/bolodefuba.jpeg',
+                preco: 35.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+            {
+                id: 7,
+                nome: 'Bolo de Limão',
+                imagem: 'images/bolodelimao.jpeg',
+                preco: 35.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+            {
+                id: 8,
+                nome: 'Bolo de Maçã e Canela',
+                imagem: 'images/bolodemaçaecanela.jpeg',
+                preco: 35.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+            {
+                id: 9,
+                nome: 'Bolo de Milho',
+                imagem: 'images/bolodemilho.png',
+                preco: 35.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+            {
+                id: 10,
+                nome: 'Bolo Formigueiro',
+                imagem: 'images/boloformigueiro.jpg',
+                preco: 5.00,
+                peso: '500g',
+                calorias: '280 kcal/fatia',
+                contem: ['Glúten']
+            },
+      
+        ];
+        let isDragging = false;
+let currentX = 0;
+let currentY = 0;
+let initialX = 0;
+let initialY = 0;
+let xOffset = 0;
+let yOffset = 0;
+
+const cartModal = document.querySelector('.cart-modal');
+
+function startDrag(e) {
+    if (!cartModal.classList.contains('active')) return;
     
-        function criarCardProduto(produto) {
-            return `
-                <div class="produto-card">
-                    <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem">
-                    <div class="produto-conteudo">
-                        <div class="produto-preco">R$ ${produto.preco.toFixed(2)}</div>
-                        <h3 class="produto-titulo">${produto.nome}</h3>
-                        <p class="produto-descricao">${produto.descricao}</p>
-                        <div class="produto-ingredientes">
-                            <strong>Ingredientes:</strong>
-                            ${produto.ingredientes.map(ing => `<span>• ${ing}</span>`).join('')}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-    
-        document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('produtos-grid');
-            produtos.forEach(produto => {
-                grid.innerHTML += criarCardProduto(produto);
-            });
-        });
-        function scrollParaProdutos() {
-        const produtosSection = document.getElementById('produtos');
-        const headerHeight = document.querySelector('header').offsetHeight;
+    isDragging = true;
+    cartModal.style.transition = 'none';
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', endDrag);
+}
+
+function drag(e) {
+    if (isDragging) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
         
-        if(produtosSection) {
-            window.scrollTo({
-                top: produtosSection.offsetTop - headerHeight,
-                behavior: 'instant'
-            });
-        }
+        xOffset = currentX;
+        yOffset = currentY;
+        
+        cartModal.style.transform = `translate(${currentX}px, ${currentY}px)`;
     }
+}
 
-    // Modifique o event listener de DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', () => {
-        const grid = document.getElementById('produtos-grid');
-        produtos.forEach(produto => {
-            grid.innerHTML += criarCardProduto(produto);
-        });
+function endDrag() {
+    isDragging = false;
+    cartModal.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    document.removeEventListener('mousemove', drag);
+    document.removeEventListener('mouseup', endDrag);
+    document.querySelector('.cart-modal h2').addEventListener('mousedown', startDrag);
+}
 
-        // Remover loading screen e então scrollar
-        setTimeout(() => {
-            document.querySelector('.loading-screen').style.display = 'none';
-            scrollParaProdutos();
-            
-            // Forçar scroll suave após pequeno delay para browsers que precisam
-            setTimeout(() => {
-                window.scrollTo({
-                    top: produtosSection.offsetTop - headerHeight,
-                    behavior: 'smooth'
+
+        function atualizarCarrinho() {
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            document.querySelector('.cart-count').textContent = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+            renderizarCarrinho();
+            console.log('Carrinho atualizado:', carrinho);
+        }
+
+        function adicionarAoCarrinho(produtoId) {
+            const produto = produtos.find(p => p.id === produtoId);
+
+            if (!produto) return;
+
+            const itemExistente = carrinho.find(item => item.id === produtoId);
+
+            if (itemExistente) {
+                itemExistente.quantidade++;
+            } else {
+                carrinho.push({
+                    ...produto,
+                    quantidade: 1
                 });
-            }, 100);
-        }, 1000);
-    });
+            }
+
+            console.log('Item adicionado:', produto);
+            atualizarCarrinho();
+            // Feedback visual
+            const btn = document.querySelector(`[onclick="adicionarAoCarrinho(${produtoId})"]`);
+            btn.classList.add('added');
+            setTimeout(() => btn.classList.remove('added'), 1000);
+        }
+
+
+
+        function removerItem(id) {
+            // Atualizado para decrementar quantidade ao invés de remover completamente
+            const itemIndex = carrinho.findIndex(item => item.id === id);
+            if (itemIndex !== -1) {
+                if (carrinho[itemIndex].quantidade > 1) {
+                    carrinho[itemIndex].quantidade--;
+                } else {
+                    carrinho.splice(itemIndex, 1);
+                }
+                atualizarCarrinho();
+            }
+        }
+
+        function renderizarProdutos() {
+            const grid = document.getElementById('produtos-grid');
+            grid.innerHTML = produtos.map(produto => `
+            <div class="produto-card">
+                <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem">
+                <div class="produto-info">
+                    <h3>${produto.nome}</h3>
+                    <div class="produto-preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
+                    <div class="produto-detalhes">
+                        <p>${produto.peso} • ${produto.calorias}</p>
+                        <p>Contém: ${produto.contem.join(', ')}</p>
+                    </div>
+                    <button class="btn-adicionar" onclick="adicionarAoCarrinho(${produto.id})">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        `).join('');
+        }
+
+
+        function renderizarCarrinho() {
+            const itemsContainer = document.querySelector('.cart-items');
+            const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+
+            itemsContainer.innerHTML = carrinho.map(item => `
+            <div class="cart-item">
+                <div>
+                    <h4>${item.nome}</h4>
+                    <p>${item.quantidade}x R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                </div>
+                <button onclick="removerItem(${item.id})">🗑️ Remover</button>
+            </div>
+        `).join('');
+
+            document.querySelector('.cart-total').textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function toggleCart() {
+            document.querySelector('.cart-modal').classList.toggle('active');
+        }
+
+        function enviarPedido() {
+            const numero = '5511959426239';
+            const mensagem = encodeURIComponent(
+                `*Pedido BlôBom* 🎂\n\n` +
+                carrinho.map(item =>
+                    `➤ ${item.nome}\n` +
+                    `Quantidade: ${item.quantidade}\n` +
+                    `Valor Unitário: R$ ${item.preco.toFixed(2).replace('.', ',')}\n` +
+                    `Subtotal: R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}\n`
+                ).join('\n') +
+                `\n*Total: R$ ${carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0).toFixed(2).replace('.', ',')}*` +
+                `\n\n*Informações Adicionais:*\n` +
+                `• Todos os bolos são feitos artesanalmente\n` +
+                `• Prazo de entrega: 48 horas\n` +
+                `• Formas de pagamento: PIX ou dinheiro`
+            );
+            window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
+        }
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', renderizarProdutos);
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('cart-modal')) {
+                toggleCart();
+            }
+        });
+        // Adicione isso no final do seu script
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+
+                // Remove completamente o loading screen após a animação
+                const loadingScreen = document.querySelector('.loading-screen');
+                loadingScreen.addEventListener('transitionend', () => {
+                    loadingScreen.remove();
+                });
+            }, 0); // Ajuste este tempo conforme necessário
+        });
     </script>
- 
 </head>
+
 <body>
     <div class="loading-screen">
-        <div class="logo-loading"></div>
+        <img src="images/icons/Blôblom.svg" alt="BlôBom Carregando" class="loading-logo">
     </div>
+
     <header class="header">
-        <!-- Nome (Esquerda) -->
         <div class="header-nome">
-            <img src="images/icons/BlôBomLetra.svg" alt="BlôBom">
+            <img src="images/icons/BlôBom2.svg" alt="BlôBom">
         </div>
 
-        <!-- Logo (Centro) -->
         <div class="header-logo">
             <img src="images/icons/Blôblom.svg" alt="Logo">
         </div>
 
-        <!-- Navegação (Direita) -->
         <nav class="nav-menu">
             <a href="#produtos" class="nav-link">Produtos</a>
             <a href="#contato" class="nav-link">Contato</a>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <div class="cart-count">0</div>
+            </div>
         </nav>
-    
 
-        <script>
+
+        <!--<script>
             // Efeito de desaparecimento no scroll
             let lastScroll = 0;
             const header = document.querySelector('.header');
@@ -239,63 +339,60 @@
 
 window.addEventListener('resize', atualizarAlturaHeader);
 window.addEventListener('load', atualizarAlturaHeader);
-        </script>
+        </script>-->
     </header>
-   
+    <main class="produtos-container" id="produtos">
+        <h2 class="produtos-titulo">Nossos Bolos Especiais</h2>
+        <div class="produtos-grid" id="produtos-grid"></div>
+    </main>
+    <div class="cart-modal">
+        <h2>Seu Carrinho 🛒</h2>
+        <div class="cart-items"></div>
+        <div class="cart-total">Total: R$ 0,00</div>
+        <button class="whatsapp-btn" onclick="enviarPedido()">
+            <i class="fab fa-whatsapp"></i>
+            Fazer Pedido
+        </button>
+    </div>
 
-
-
-
-
-
-
-
-    
-    <section id="produtos">
-        <div class="produtos-container">
-            <h2>Nossas Delícias</h2>
-            <div class="produtos-grid" id="produtos-grid"></div>
-        </div>
-    </section>
-    
-    
     <section id="contato">
-    <div class="contato-container">
-        <div class="contato-criadores">
-            <!-- Criador 1 - Esquerda -->
-            <div class="criador-card">
-                <img src="images/felipe.jpg" alt="Felipe" class="criador-foto">
-                <h3 class="criador-nome">Felipe</h3>
-                <p class="criador-funcao">Criador Blôblom</p>
-                <p class="criador-desc"></p>
-            </div>
+        <div class="contato-container">
+            <div class="contato-criadores">
+                <!-- Criador 1 - Esquerda -->
+                <div class="criador-card">
+                    <img src="images/felipe.jpg" alt="Felipe" class="criador-foto">
+                    <h3 class="criador-nome">Felipe</h3>
+                    <p class="criador-funcao">Criador Blôblom</p>
+                    <p class="criador-desc"></p>
+                </div>
 
-            <!-- Links Centralizados -->
-            <div class="contato-links">
-                <h2>Faça seu pedido</h2>
-                <div class="contato-botoes">
-                    <a href="https://wa.me/5511959426239" class="botao-contato whatsapp">
-                        <img src="images/icons/Whatsapp-logo.svg" alt="WhatsApp">
-                        Enviar Mensagem
-                    </a>
-                    <a href="https://instagram.com/blobom" class="botao-contato instagram">
-                        <img src="images/icons/instagram-logo.svg" alt="Instagram">
-                        Siga no instagram!
-                    </a>
+                <!-- Links Centralizados -->
+                <div class="contato-links">
+                    <h2>Faça seu pedido</h2>
+                    <div class="contato-botoes">
+                        <a href="https://wa.me/5511959426239" target="_blank" class="botao-contato whatsapp">
+                            <img src="images/icons/Whatsapp-logo.svg" alt="WhatsApp">
+                            Enviar Mensagem
+                        </a>
+                        <a href="https://www.instagram.com/boloteria_bloblom/" target="_blank"
+                            class="botao-contato instagram">
+                            <img src="images/icons/instagram-logo.svg" alt="Instagram">
+                            Siga no instagram!
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Criador 2 - Direita -->
+                <div class="criador-card">
+                    <img src="images/karine.jpg" alt="Karine" class="criador-foto">
+                    <h3 class="criador-nome">Karine</h3>
+                    <p class="criador-funcao">Criadora Blôblom</p>
+                    <p class="criador-desc"> </p>
                 </div>
             </div>
-
-            <!-- Criador 2 - Direita -->
-            <div class="criador-card">
-                <img src="images/karine.jpg" alt="Karine" class="criador-foto">
-                <h3 class="criador-nome">Karine</h3>
-                <p class="criador-funcao">Criadora Blôblom</p>
-                <p class="criador-desc"> </p>
-            </div>
         </div>
-    </div>
-</section>
-   
+    </section>
+
     <footer>
         <p>&copy; 2025 BlôBom - Todos os direitos reservados.</p>
     </footer>
@@ -313,13 +410,24 @@ window.addEventListener('load', atualizarAlturaHeader);
                 backButton.classList.remove('visible');
             }
         });
-    
+
         // Scroll suave
         document.querySelector('.back-to-top').addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+
+                // Remove completamente o loading screen após a animação
+                const loadingScreen = document.querySelector('.loading-screen');
+                loadingScreen.addEventListener('transitionend', () => {
+                    loadingScreen.remove();
+                });
+            }, 50000); // Ajuste este tempo conforme necessário
         });
     </script>
 

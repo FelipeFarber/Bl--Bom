@@ -1,93 +1,92 @@
 :root {
-  --cor-primaria: #6da37a;
-  --cor-secundaria: #5D4037;
-  --cor-fundo: #FFF8DC;
-  --cor-texto: #5D4037;
+  --cor-primaria: #30aa59;
+  --cor-secundaria: #ffffff;
   --cor-destaque: #C5E1A5;
+  --header-height: 80px;
 }
+
 [data-theme="dark"] {
-  --cor-primaria: #4E342E;
-  --cor-secundaria: #D7CCC8;
-  --cor-fundo: #212121;
-  --cor-texto: #D7CCC8;
-  --cor-destaque: #689F38;
+--cor-primaria: #4E342E;
+--cor-secundaria: #D7CCC8;
+--cor-fundo: #212121;
+--cor-texto: #D7CCC8;
+--cor-destaque: #689F38;
 }
 
 * {
-  box-sizing: border-box;
-  transition: all 0.3s ease;
+box-sizing: border-box;
+transition: all 0.3s ease;
 }
 html {
+scroll-behavior: smooth;
+scroll-padding-top: 100px; /* Altura do header */
+
   scroll-behavior: smooth;
   scroll-padding-top: 100px; /* Altura do header */
- 
-    scroll-behavior: smooth;
-    scroll-padding-top: 100px; /* Altura do header */
 
 .section {
-    scroll-margin-top: 100px; /* Compensar header fixo */
+  scroll-margin-top: 100px; /* Compensar header fixo */
 }
 }
 
 
 .section.visible {
-  opacity: 1;
-  transform: translateY(0);
+opacity: 1;
+transform: translateY(0);
 }
 
 /* Suavização extra para mobile */
 @media (prefers-reduced-motion: reduce) {
-  .section {
-      transition: none;
-  }
+.section {
+    transition: none;
+}
 }
 body {
   text-align: center;
   font-family: 'Arial', sans-serif;
-  min-height: 200vh;
   margin: 0;
-  background-color: var(--cor-fundo);
+  background-color:rgb(240, 240, 138);
   color: var(--cor-texto);
   scroll-behavior: smooth;
-  padding-top: 120px; 
+  padding-top: 80px; 
   box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     font-weight: 400; 
-}
+  }
 
 
 /* Estilos específicos para diferentes pesos */
 h1, h2, h3 {
-    font-weight: 700; /* Negrito para títulos */
+  font-weight: 700; /* Negrito para títulos */
 }
 
 .fonte-leve {
-    font-weight: 300; /* Para textos mais finos */
+  font-weight: 300; /* Para textos mais finos */
 }
 
 .forte {
-    font-weight: 500; /* Para ênfase média */
+  font-weight: 500; /* Para ênfase média */
 }
 
 
 
 .theme-toggle {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  background: var(--cor-primaria);
-  color: white;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
+position: fixed;
+left: 20px;
+bottom: 20px;
+background: var(--cor-primaria);
+color: white;
+padding: 10px;
+border-radius: 50%;
+cursor: pointer;
 }
 h2 {
-  font-size: 3em;
-  margin-bottom: 20px;
+font-size: 3em;
+margin-bottom: 20px;
 }
 
 #sobre {
-  background-color: #D7CCC8;
+background-color: #D7CCC8;
 }
 
 
@@ -95,15 +94,15 @@ h2 {
 
 
 @media (max-width: 768px) {
-  header h1 {
-      font-size: 2.5em;
-  }
-  
-  nav ul {
-      flex-direction: column;
-      gap: 10px;
-  }
-  
- 
-  
+header h1 {
+    font-size: 2.5em;
+}
+
+nav ul {
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
 }
