@@ -104,7 +104,7 @@
                 id: 10,
                 nome: 'Bolo Formigueiro',
                 imagem: 'images/boloformigueiro.jpg',
-                preco: 5.00,
+                preco: 35.00,
                 peso: '500g',
                 calorias: '280 kcal/fatia',
                 contem: ['Glúten']
@@ -112,14 +112,13 @@
       
         ];
         let isDragging = false;
-let currentX = 0;
-let currentY = 0;
-let initialX = 0;
-let initialY = 0;
-let xOffset = 0;
-let yOffset = 0;
-
-const cartModal = document.querySelector('.cart-modal');
+    let currentX = 0;
+    let currentY = 0;
+    let initialX = 0;
+    let initialY = 0;
+    let xOffset = 0;
+    let yOffset = 0;
+    const cartModal = document.querySelector('.cart-modal');
 
 function startDrag(e) {
     if (!cartModal.classList.contains('active')) return;
@@ -165,6 +164,8 @@ function endDrag() {
         function adicionarAoCarrinho(produtoId) {
             const produto = produtos.find(p => p.id === produtoId);
 
+
+        
             if (!produto) return;
 
             const itemExistente = carrinho.find(item => item.id === produtoId);
@@ -176,14 +177,17 @@ function endDrag() {
                     ...produto,
                     quantidade: 1
                 });
+
             }
 
+            
             console.log('Item adicionado:', produto);
             atualizarCarrinho();
             // Feedback visual
             const btn = document.querySelector(`[onclick="adicionarAoCarrinho(${produtoId})"]`);
             btn.classList.add('added');
             setTimeout(() => btn.classList.remove('added'), 1000);
+            
         }
 
 
@@ -346,7 +350,7 @@ window.addEventListener('load', atualizarAlturaHeader);
         <div class="produtos-grid" id="produtos-grid"></div>
     </main>
     <div class="cart-modal">
-        <h2>Seu Carrinho 🛒</h2>
+        <h2>Sua cesta 🧺</h2>
         <div class="cart-items"></div>
         <div class="cart-total">Total: R$ 0,00</div>
         <button class="whatsapp-btn" onclick="enviarPedido()">

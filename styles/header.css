@@ -144,7 +144,7 @@
   transform: translate(-50%, -50%) scale(0.9);
   width: 90%;
   max-width: 500px;
-  background: white;
+  background: rgb(119, 204, 93);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
