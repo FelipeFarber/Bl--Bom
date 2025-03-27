@@ -235,49 +235,55 @@
   animation: modalOut 0.2s forwards;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .header {
-      padding: 50px 20px;
-      height: 70px;
-  }
-
-  .header-nome {
-      width: 150px;
+      padding: 10px 15px;
+      flex-wrap: nowrap;
   }
 
   .header-nome img {
-      max-height: 40px;
-      height: 90px;
+      height: 35px;
   }
 
   .header-logo img {
-      height: 100px;
-     justify-content: center;
-      
-  }
-
-  .nav-menu {
-      gap: 20px;
-      font-size: 0.9em;
-  }
-}
-
-@media (max-width: 480px) {
-  .header {
-      padding: 0 15px;
       height: 60px;
-  }
-
-  .header-nome {
-      width: 220px;
-  }
-
-  .header-logo {
-      display: none;
   }
 
   .nav-menu {
       gap: 15px;
   }
+}
+
+@media (max-width: 480px) {
+  .header {
+      flex-direction: column;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+  }
+
+  .header-nome,
+  .header-logo {
+      flex: none;
+      margin: 5px 0;
+  }
+
+  .header-nome img {
+      height: 30px;
+  }
+
+  .header-logo img {
+      height: 50px;
+  }
+
+  .nav-menu {
+      justify-content: center;
+      width: 100%;
+      gap: 10px;
+      margin-top: 5px;
+      font-size: 0.9rem;
+  }
+  .cart-icon {
+    font-size: 1.1rem;
+}
 }
