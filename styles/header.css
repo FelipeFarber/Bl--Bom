@@ -237,53 +237,106 @@
 
 @media (max-width: 768px) {
   .header {
-      padding: 10px 15px;
+      padding: 12px 15px;
       flex-wrap: nowrap;
+      gap: 8px;
+      height: 70px;
+  }
+
+  .header-nome {
+      min-width: 100px;
+      max-width: 40%;
   }
 
   .header-nome img {
-      height: 35px;
+      height: 32px;
+      width: auto;
+      object-fit: contain;
   }
 
-  .header-logo img {
-      height: 60px;
-  }
-
-  .nav-menu {
-      gap: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header {
-      flex-direction: column;
-      padding: 10px;
-      position: sticky;
-      top: 0;
-  }
-
-  .header-nome,
   .header-logo {
       flex: none;
-      margin: 5px 0;
-  }
-
-  .header-nome img {
-      height: 30px;
+      width: 60px;
+      margin: 0 5px;
   }
 
   .header-logo img {
-      height: 50px;
+      height: 100px;
+      width: 50px;
+      min-width: 50px;
   }
 
   .nav-menu {
-      justify-content: center;
-      width: 100%;
-      gap: 10px;
-      margin-top: 5px;
-      font-size: 0.9rem;
+      gap: 12px;
+      font-size: 0.75rem;
   }
+
+  .nav-menu a {
+      white-space: nowrap;
+      padding: 6px 8px;
+  }
+
   .cart-icon {
-    font-size: 1.1rem;
+      font-size: 1.1rem;
+      position: relative;
+      padding-left: 8px;
+  }
+
+  .cart-count {
+      width: 18px;
+      height: 18px;
+      font-size: 0.7rem;
+      right: -8px;
+  }
 }
+
+/* Ajustes para telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+  .header {
+      padding: 10px 12px;
+      height: 60px;
+      gap: 5px;
+  }
+
+  .header-nome img {
+      height: 28px;
+  }
+
+  .header-logo img {
+      height: 42px;
+      width: 42px;
+  }
+
+  .nav-menu {
+      gap: 8px;
+  }
+
+  .nav-menu a {
+      font-size: 0.7rem;
+      padding: 5px 6px;
+  }
+
+  .cart-icon {
+      font-size: 1rem;
+  }
+}
+
+/* Ajuste emergencial para telas estreitas (até 360px) */
+@media (max-width: 360px) {
+  .header {
+      padding: 8px 10px;
+  }
+
+  .nav-menu {
+      gap: 6px;
+  }
+
+  .nav-menu a {
+      font-size: 0.65rem;
+      padding: 4px 5px;
+  }
+
+  .header-logo {
+      display: none; /* Opcional: esconde logo se necessário */
+  }
 }
