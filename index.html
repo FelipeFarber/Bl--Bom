@@ -100,6 +100,7 @@
                 calorias: '280 kcal/fatia',
                 contem: ['Glúten']
             },
+
             {
                 id: 10,
                 nome: 'Bolo Formigueiro',
@@ -109,49 +110,66 @@
                 calorias: '280 kcal/fatia',
                 contem: ['Glúten']
             },
-      
+            {
+                id: 11,
+                nome: 'Pão Francês Artesanal',
+                imagem: 'images/pao-frances.jpg',
+                preco: 8.50,
+                peso: '300g',
+                calorias: '150 kcal/unidade',
+                contem: ['Glúten']
+            },
+            {
+                id: 12,
+                nome: 'Pão Integral Multigrãos',
+                imagem: 'images/pao-integral.jpg',
+                preco: 12.90,
+                peso: '400g',
+                calorias: '120 kcal/fatia',
+                contem: ['Glúten', 'Sementes']
+            },
         ];
         let isDragging = false;
-    let currentX = 0;
-    let currentY = 0;
-    let initialX = 0;
-    let initialY = 0;
-    let xOffset = 0;
-    let yOffset = 0;
-    const cartModal = document.querySelector('.cart-modal');
+        let currentX = 0;
+        let currentY = 0;
+        let initialX = 0;
+        let initialY = 0;
+        let xOffset = 0;
+        let yOffset = 0;
+        const cartModal = document.querySelector('.cart-modal');
 
-function startDrag(e) {
-    if (!cartModal.classList.contains('active')) return;
-    
-    isDragging = true;
-    cartModal.style.transition = 'none';
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
+        function startDrag(e) {
+            if (!cartModal.classList.contains('active')) return;
 
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', endDrag);
-}
+            isDragging = true;
+            cartModal.style.transition = 'none';
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
 
-function drag(e) {
-    if (isDragging) {
-        e.preventDefault();
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-        
-        xOffset = currentX;
-        yOffset = currentY;
-        
-        cartModal.style.transform = `translate(${currentX}px, ${currentY}px)`;
-    }
-}
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', endDrag);
+        }
 
-function endDrag() {
-    isDragging = false;
-    cartModal.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-    document.removeEventListener('mousemove', drag);
-    document.removeEventListener('mouseup', endDrag);
-    document.querySelector('.cart-modal h2').addEventListener('mousedown', startDrag);
-}
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+
+                xOffset = currentX;
+                yOffset = currentY;
+
+                cartModal.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            }
+        }
+
+        function endDrag() {
+            isDragging = false;
+            cartModal.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('mouseup', endDrag);
+            document.querySelector('.cart-modal h2').addEventListener('mousedown', startDrag);
+        }
 
 
         function atualizarCarrinho() {
@@ -161,11 +179,8 @@ function endDrag() {
             console.log('Carrinho atualizado:', carrinho);
         }
 
-        function adicionarAoCarrinho(produtoId) {
+        function adicionarAoCarrinho(produtoId, event) {
             const produto = produtos.find(p => p.id === produtoId);
-
-
-        
             if (!produto) return;
 
             const itemExistente = carrinho.find(item => item.id === produtoId);
@@ -173,75 +188,95 @@ function endDrag() {
             if (itemExistente) {
                 itemExistente.quantidade++;
             } else {
-                carrinho.push({
-                    ...produto,
-                    quantidade: 1
-                });
-
+                carrinho.push({ ...produto, quantidade: 1 });
             }
 
-            
-            console.log('Item adicionado:', produto);
             atualizarCarrinho();
-            // Feedback visual
-            const btn = document.querySelector(`[onclick="adicionarAoCarrinho(${produtoId})"]`);
-            btn.classList.add('added');
-            setTimeout(() => btn.classList.remove('added'), 1000);
-            
-        }
 
+            // Atualizar botão de feedback visual
+            const btn = event.target;
+            btn.innerHTML = '✔️ Adicionado!';
+            setTimeout(() => {
+                btn.innerHTML = 'Adicionar ao Carrinho';
+            }, 1000);
+            // Animação de confirmação
+            btn.classList.add('added');
+            setTimeout(() => btn.classList.remove('added'), 800);
+        }
 
 
         function removerItem(id) {
-            // Atualizado para decrementar quantidade ao invés de remover completamente
+            // Encontrar o índice do item no carrinho
             const itemIndex = carrinho.findIndex(item => item.id === id);
-            if (itemIndex !== -1) {
-                if (carrinho[itemIndex].quantidade > 1) {
-                    carrinho[itemIndex].quantidade--;
-                } else {
-                    carrinho.splice(itemIndex, 1);
-                }
-                atualizarCarrinho();
+
+            if (itemIndex === -1) return;
+
+            // Encontrar todos os elementos do carrinho
+            const cartItems = document.querySelectorAll('.cart-item');
+
+            // Encontrar o elemento correto usando data-attribute
+            const itemElement = Array.from(cartItems).find(item => {
+                return parseInt(item.dataset.id) === id;
+            });
+
+            if (itemElement) {
+                // Aplicar animação primeiro
+                itemElement.classList.add('removing');
+
+                // Esperar a animação terminar antes de remover
+                setTimeout(() => {
+                    if (carrinho[itemIndex].quantidade > 1) {
+                        carrinho[itemIndex].quantidade--;
+                    } else {
+                        carrinho.splice(itemIndex, 1);
+                    }
+
+                    // Atualizar localStorage e DOM
+                    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                    atualizarCarrinho();
+                }, 500);
             }
         }
-
-        function renderizarProdutos() {
-            const grid = document.getElementById('produtos-grid');
-            grid.innerHTML = produtos.map(produto => `
-            <div class="produto-card">
-                <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem">
-                <div class="produto-info">
-                    <h3>${produto.nome}</h3>
-                    <div class="produto-preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
-                    <div class="produto-detalhes">
-                        <p>${produto.peso} • ${produto.calorias}</p>
-                        <p>Contém: ${produto.contem.join(', ')}</p>
-                    </div>
-                    <button class="btn-adicionar" onclick="adicionarAoCarrinho(${produto.id})">
-                        Adicionar ao Carrinho
-                    </button>
+        function renderizarProdutos(produtosArray, targetId) {
+            const grid = document.getElementById(targetId);
+            grid.innerHTML = produtosArray.map(produto => `
+        <div class="produto-card">
+            <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem">
+            <div class="produto-info">
+                <h3>${produto.nome}</h3>
+                <div class="produto-preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
+                <div class="produto-detalhes">
+                    <p>${produto.peso} • ${produto.calorias}</p>
+                    <p>Contém: ${produto.contem.join(', ')}</p>
                 </div>
+                 <button class="btn-adicionar" onclick="adicionarAoCarrinho(${produto.id}, event)">
+                    Adicionar ao Carrinho
+                </button>
             </div>
-        `).join('');
+        </div>
+    `).join('');
         }
 
 
         function renderizarCarrinho() {
-            const itemsContainer = document.querySelector('.cart-items');
-            const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+    const itemsContainer = document.querySelector('.cart-items');
+    const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
 
-            itemsContainer.innerHTML = carrinho.map(item => `
-            <div class="cart-item">
-                <div>
-                    <h4>${item.nome}</h4>
-                    <p>${item.quantidade}x R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
-                </div>
-                <button onclick="removerItem(${item.id})">🗑️ Remover</button>
+    itemsContainer.innerHTML = carrinho.map(item => `
+        <div class="cart-item" data-id="${item.id}">
+            <div class="item-info">
+                <h4>${item.nome}</h4>
+                <p>${item.quantidade}x R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
             </div>
-        `).join('');
+            <button class="btn-remover" onclick="removerItem(${item.id})">
+                <i class="fas fa-trash-alt"></i>
+                Remover
+            </button>
+        </div>
+    `).join('');
 
-            document.querySelector('.cart-total').textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
-        }
+    document.querySelector('.cart-total').textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+}
 
         function toggleCart() {
             document.querySelector('.cart-modal').classList.toggle('active');
@@ -266,23 +301,19 @@ function endDrag() {
             window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
         }
         // Inicialização
-        document.addEventListener('DOMContentLoaded', renderizarProdutos);
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('cart-modal')) {
-                toggleCart();
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarProdutos(produtos, 'produtos-grid');
+            renderizarProdutos(paes, 'paes-grid');
         });
         // Adicione isso no final do seu script
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.body.classList.add('loaded');
-
-                // Remove completamente o loading screen após a animação
                 const loadingScreen = document.querySelector('.loading-screen');
                 loadingScreen.addEventListener('transitionend', () => {
                     loadingScreen.remove();
                 });
-            }, 0); // Ajuste este tempo conforme necessário
+            }, 3000); // Ajuste este tempo conforme necessário
         });
     </script>
 </head>
@@ -311,43 +342,16 @@ function endDrag() {
         </nav>
 
 
-        <!--<script>
-            // Efeito de desaparecimento no scroll
-            let lastScroll = 0;
-            const header = document.querySelector('.header');
-            const headerHeight = header.offsetHeight;
-        
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                
-                // Ajuste a sensibilidade do efeito (quanto maior o número, mais rápido desaparece)
-                const opacity = 1 - Math.min(currentScroll / 200, 1);
-                const blurValue = Math.min(currentScroll / 20, 5);
-                
-                header.style.opacity = opacity;
-                header.style.backdropFilter = `blur(${blurValue}px)`;
-                
-                // Efeito de "esconder" ao descer
-                if (currentScroll > lastScroll && currentScroll > headerHeight) {
-                    header.classList.add('hidden');
-                } else {
-                    header.classList.remove('hidden');
-                }
-                
-                lastScroll = currentScroll;
-            });
-            function atualizarAlturaHeader() {
-    const header = document.querySelector('.header');
-    document.body.style.paddingTop = header.offsetHeight + 'px';
-}
 
-window.addEventListener('resize', atualizarAlturaHeader);
-window.addEventListener('load', atualizarAlturaHeader);
-        </script>-->
+
     </header>
     <main class="produtos-container" id="produtos">
         <h2 class="produtos-titulo">Nossos Bolos Especiais</h2>
         <div class="produtos-grid" id="produtos-grid"></div>
+        <section class="produtos-container" id="paes">
+            <h2 class="produtos-titulo">Nossos Pães Especiais</h2>
+            <div class="produtos-grid" id="paes-grid"></div>
+        </section>
     </main>
     <div class="cart-modal">
         <h2>Sua cesta 🧺</h2>
@@ -405,34 +409,49 @@ window.addEventListener('load', atualizarAlturaHeader);
         <span class="btn-text">Volte ao topo</span>
     </button>
     <script>
-        // Controle do botão
-        window.addEventListener('scroll', () => {
-            const backButton = document.querySelector('.back-to-top');
-            if (window.scrollY > 200) {
-                backButton.classList.add('visible');
-            } else {
-                backButton.classList.remove('visible');
-            }
-        });
+     
 
-        // Scroll suave
-        document.querySelector('.back-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.body.classList.add('loaded');
+        function smoothScrollTo(target) {
+    const element = document.querySelector(target);
+    if (!element) return;
 
-                // Remove completamente o loading screen após a animação
-                const loadingScreen = document.querySelector('.loading-screen');
-                loadingScreen.addEventListener('transitionend', () => {
-                    loadingScreen.remove();
-                });
-            }, 50000); // Ajuste este tempo conforme necessário
-        });
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 800;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    // Função de easing (suavização)
+    function ease(t, b, c, d) {
+        t /= d/2;
+        if (t < 1) return c/2*t*t*t + b;
+        t -= 2;
+        return c/2*(t*t*t + 2) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+// Atualize os event listeners para usar a nova função
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        smoothScrollTo(this.getAttribute('href'));
+    });
+});
+
+document.querySelector('.back-to-top').addEventListener('click', (e) => {
+    e.preventDefault();
+    smoothScrollTo('#top');
+});
     </script>
 
 

@@ -57,12 +57,11 @@
 
 .contato-botoes {
   display: flex;
-  flex-direction: column;
+  
   gap: 20px;
   img {
-    display:flex;
     margin: auto;
-    width: 10%;
+    width: 50%;
     height: auto;
   }
 }

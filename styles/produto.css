@@ -25,6 +25,14 @@
   background-color: #E8A87C;
   border-radius: 2px;
 }
+#paes {
+  background-color: #f9f5f0;
+  padding: 40px 0;
+}
+
+#paes .produtos-titulo::after {
+  background-color: #8d6e63;
+}
 
 /* Versão mobile */
 @media (max-width: 768px) {

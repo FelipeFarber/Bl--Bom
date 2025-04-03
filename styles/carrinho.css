@@ -2,3 +2,352 @@
   background: #28a745 !important;
   transform: scale(0.95);
 }
+.btn-adicionar {
+  position: relative;
+  transition: 
+      background 0.3s ease,
+      transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+      box-shadow 0.3s ease;
+}
+
+.btn-adicionar:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.btn-adicionar:active:after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+  }
+  100% {
+      transform: translate(-50%, -50%) scale(50);
+      opacity: 0;
+  }
+}
+.btn-adicionar.added {
+  animation: confirmAdd 0.8s ease;
+}
+
+@keyframes confirmAdd {
+  0% { background: #4CAF50; }
+  50% { transform: scale(0.95); }
+  100% { background: initial; }
+}
+
+.cart-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 90%;
+  max-width: 500px;
+  background: rgb(119, 204, 93);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  cursor: grab;
+}
+
+/* Botão Remover */
+.btn-remover {
+  background: #ffeded;
+  color: #dc3545;
+  border: 1px solid #ffcccc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+}
+
+.btn-remover:hover {
+  background: #ffdfdf;
+  border-color: #ff9999;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-remover i {
+  font-size: 1.1em;
+}
+.cart-modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cart-modal:active {
+  cursor: grabbing;
+}
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+}
+.cart-item-image:hover {
+  transform: scale(1.1);
+}
+.cart-items {
+  max-height: 60vh;
+  overflow-y: auto;
+  margin: 1rem 0;
+}
+.btn-remover {
+  transition: 
+      background 0.3s ease,
+      transform 0.3s ease,
+      opacity 0.3s ease;
+}
+.cart-item.removing {
+  animation: removeAnimation 0.5s forwards;
+}
+
+@keyframes removeAnimation {
+  from {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  to {
+      opacity: 0;
+      transform: translateX(100%);
+      height: 0;
+      padding: 0;
+      margin: 0;
+  }
+}
+
+/* Efeito de alerta ao passar o mouse */
+.btn-remover:hover {
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* Animação ao remover item */
+.btn-remover.removing {
+  animation: removeItem 0.6s ease forwards;
+}
+
+@keyframes removeItem {
+  0% { 
+      transform: translateX(0);
+      opacity: 1;
+  }
+  100% { 
+      transform: translateX(100%);
+      opacity: 0;
+  }
+}
+@keyframes itemRemoval {
+  0% { 
+      opacity: 1;
+      transform: translateX(0);
+  }
+  100% { 
+      opacity: 0;
+      transform: translateX(100%);
+      height: 0;
+      padding: 0;
+      margin: 0;
+  }
+}
+
+.cart-item.removing {
+  animation: itemRemoval 0.5s forwards;
+}
+
+/* Garantir que os itens ocultos não afetem o layout */
+.cart-item {
+  transition: all 0.3s ease;
+}
+
+/* Itens do Carrinho */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s ease;
+}
+
+.cart-item:hover {
+  background: #f9f9f9;
+}
+
+.item-info h4 {
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+.item-info p {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Preço Total */
+.cart-total {
+  text-align: right;
+  padding: 20px;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #2ecc71;
+  background: #f8f9fa;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+.cart-count {
+  background: #e74c3c;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  font-weight: 700;
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1em;
+
+}
+.whatsapp-btn {
+  transition: 
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  animation: pulseWhatsapp 1.5s infinite;
+}
+
+@keyframes pulseWhatsapp {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.quantity-controls button {
+  transition: 
+      transform 0.15s ease,
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+}
+
+.quantity-controls button:active {
+  animation: press 0.4s ease;
+}
+
+@keyframes press {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.85); }
+  100% { transform: scale(1); }
+}
+
+.quantity-controls button:hover {
+  background: #e9ecef;
+  transform: scale(1.1);
+}
+
+.quantity-controls span {
+  min-width: 25px;
+  text-align: center;
+  font-weight: 500;
+}
+.cart-modal {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s ease;
+}
+
+.cart-modal:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+.ripple-effect {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 10%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: rippleExpand 0.6s linear;
+}
+
+@keyframes rippleExpand {
+  from {
+      width: 0;
+      height: 0;
+      opacity: 1;
+  }
+  to {
+      width: 600px;
+      height: 600px;
+      opacity: 0;
+  }
+}
+@keyframes slideOut {
+  from {
+      transform: translateX(0);
+      opacity: 1;
+  }
+  to {
+      transform: translateX(100%);
+      opacity: 0;
+  }
+}
+
+.cart-item.removing {
+  animation: slideOut 0.5s ease forwards;
+  position: relative;
+  z-index: 1;
+}
+
+/* Para evitar "piscadas" durante a remoção */
+.cart-items {
+  overflow: hidden;
+}

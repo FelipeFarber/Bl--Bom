@@ -1,7 +1,8 @@
 :root {
-  --cor-primaria: #30aa59;
-  --cor-secundaria: #ffffff;
-  --cor-destaque: #C5E1A5;
+  --primary-color: #e74c3c;
+    --secondary-color: #2ecc71;
+    --text-color: #333;
+    --background-light: #f8f9fa;
   --header-height: 80px;
 }
 
@@ -18,15 +19,15 @@ box-sizing: border-box;
 transition: all 0.3s ease;
 }
 html {
-scroll-behavior: smooth;
-scroll-padding-top: 100px; /* Altura do header */
-
   scroll-behavior: smooth;
-  scroll-padding-top: 100px; /* Altura do header */
-
-.section {
-  scroll-margin-top: 100px; /* Compensar header fixo */
 }
+
+/* Opcional: Personalizar a velocidade */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px; /* Ajuste conforme o tamanho do header */
+  }
 }
 
 
@@ -89,7 +90,16 @@ margin-bottom: 20px;
 background-color: #D7CCC8;
 }
 
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  position: relative;
+  overflow: hidden;
+}
 
+button:active {
+  transform: translateY(2px) scale(0.98);
+}
 
 
 
