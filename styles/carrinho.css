@@ -1,13 +1,13 @@
 .btn-adicionar.added {
-  background: #28a745 !important;
+  background: #e0522e !important;
   transform: scale(0.95);
 }
 .btn-adicionar {
   position: relative;
   transition: 
-      background 0.3s ease,
-      transform 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28),
-      box-shadow 0.3s ease;
+      background 0.6s ease,
+      transform 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+      box-shadow 0.5s ease;
 }
 
 .btn-adicionar:after {
@@ -17,14 +17,14 @@
   left: 50%;
   width: 5px;
   height: 5px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(1);
 }
 
 .btn-adicionar:active:after {
-  animation: ripple 0.6s ease-out;
+  animation: ripple 0.9s ease-out;
 }
 
 @keyframes ripple {
@@ -38,11 +38,11 @@
   }
 }
 .btn-adicionar.added {
-  animation: confirmAdd 0.8s ease;
+  animation: confirmAdd 0.10s ease;
 }
 
 @keyframes confirmAdd {
-  0% { background: #4CAF50; }
+  0% { background: #ffffff; }
   50% { transform: scale(0.95); }
   100% { background: initial; }
 }
@@ -54,7 +54,7 @@
   transform: translate(-50%, -50%) scale(0.9);
   width: 90%;
   max-width: 500px;
-  background: rgb(119, 204, 93);
+  background: rgb(243, 221, 96);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -62,14 +62,27 @@
   visibility: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
-  cursor: grab;
+  
+}
+.cart-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #eee;
+}
+
+.cart-header img {
+  width: 10px;
+  height: 10px;
 }
 
 /* Botão Remover */
 .btn-remover {
-  background: #ffeded;
-  color: #dc3545;
-  border: 1px solid #ffcccc;
+  background: #ac4545;
+  color: #ffffff;
+  border: 1px solid #000000;
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
@@ -81,8 +94,8 @@
 }
 
 .btn-remover:hover {
-  background: #ffdfdf;
-  border-color: #ff9999;
+  background: #ee1818;
+  border-color: #000000;
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -194,22 +207,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  border-bottom: 1px solid #eee;
+
   transition: background 0.3s ease;
 }
 
 .cart-item:hover {
-  background: #f9f9f9;
+  background: #f1cf09;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+  z-index: 1;
+  position: relative;   
+  overflow: hidden;
+  border: 1px solid #000000;
 }
 
 .item-info h4 {
-  color: #333;
+  color: #000000;
   margin-bottom: 5px;
   font-size: 1em;
 }
 
 .item-info p {
-  color: #666;
+  color: #000000;
   font-size: 0.9em;
 }
 
@@ -219,14 +239,15 @@
   padding: 20px;
   font-size: 1.2em;
   font-weight: 700;
-  color: #2ecc71;
-  background: #f8f9fa;
+  color: #000000;
+  background: #ff8801;
   margin-top: 15px;
+  margin-bottom: 15px;
   border-radius: 8px;
 }
 .cart-count {
-  background: #e74c3c;
-  color: white;
+  background: #d18a1f;
+  color: rgb(0, 0, 0);
   width: 24px;
   height: 24px;
   border-radius: 50%;

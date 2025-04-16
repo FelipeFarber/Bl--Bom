@@ -7,18 +7,15 @@
     <title>Blôbom</title>
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Otimização das fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&family=Lavishly+Yours&family=Montserrat:wght@500&family=Syne:wght@700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Inter:ital,opsz,wght@0,14..32,500;1,14..32,500&family=Lavishly+Yours&family=Montserrat:wght@500&family=Syne:wght@700&display=swap" rel="stylesheet">
+
 
     <script>
         let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-        const produtos = [
+        const bolos = [
             {
                 id: 1,
                 nome: 'Bolo de Chocolate ',
@@ -110,34 +107,30 @@
                 calorias: '280 kcal/fatia',
                 contem: ['Glúten']
             },
-            {
+          
+           
+        ];
+        const paes = [
+        {
                 id: 11,
-                nome: 'Pão Francês Artesanal',
-                imagem: 'images/pao-frances.jpg',
-                preco: 8.50,
-                peso: '300g',
+                nome: 'Pão Caseiro Artesanal',
+                imagem: 'images/paodequeijo.jpg',
+                preco: 15.00,
+                peso: '200g',
                 calorias: '150 kcal/unidade',
-                contem: ['Glúten']
+                contem: ['Lactose']
             },
             {
                 id: 12,
-                nome: 'Pão Integral Multigrãos',
-                imagem: 'images/pao-integral.jpg',
-                preco: 12.90,
-                peso: '400g',
-                calorias: '120 kcal/fatia',
-                contem: ['Glúten', 'Sementes']
-            },
-        ];
-        let isDragging = false;
-        let currentX = 0;
-        let currentY = 0;
-        let initialX = 0;
-        let initialY = 0;
-        let xOffset = 0;
-        let yOffset = 0;
-        const cartModal = document.querySelector('.cart-modal');
-
+                nome: 'Pão Caseiro Integral',
+                imagem: 'images/pao.jpg',
+                preco: 10.00,
+                peso: '200g',
+                calorias: '150 kcal/unidade',
+                contem: ['Glúten']
+            }
+            ];
+         
         function startDrag(e) {
             if (!cartModal.classList.contains('active')) return;
 
@@ -178,31 +171,30 @@
             renderizarCarrinho();
             console.log('Carrinho atualizado:', carrinho);
         }
-
+        const todosProdutos = [...bolos, ...paes];
         function adicionarAoCarrinho(produtoId, event) {
-            const produto = produtos.find(p => p.id === produtoId);
-            if (!produto) return;
+        const produto = todosProdutos.find(p => p.id === produtoId); // Alterado para todosProdutos
+        if (!produto) return;
 
-            const itemExistente = carrinho.find(item => item.id === produtoId);
+        const itemExistente = carrinho.find(item => item.id === produtoId);
+        const btn = event.currentTarget;
 
-            if (itemExistente) {
-                itemExistente.quantidade++;
-            } else {
-                carrinho.push({ ...produto, quantidade: 1 });
-            }
-
-            atualizarCarrinho();
-
-            // Atualizar botão de feedback visual
-            const btn = event.target;
-            btn.innerHTML = '✔️ Adicionado!';
-            setTimeout(() => {
-                btn.innerHTML = 'Adicionar ao Carrinho';
-            }, 1000);
-            // Animação de confirmação
-            btn.classList.add('added');
-            setTimeout(() => btn.classList.remove('added'), 800);
+        if (itemExistente) {
+            itemExistente.quantidade++;
+        } else {
+            carrinho.push({ ...produto, quantidade: 1 });
         }
+
+        atualizarCarrinho();
+
+        // Feedback visual
+        btn.innerHTML = '✔️ Adicionado!';
+        setTimeout(() => {
+            btn.innerHTML = 'Adicionar ao Carrinho';
+        }, 1000);
+        btn.classList.add('added');
+        setTimeout(() => btn.classList.remove('added'), 800);
+    }
 
 
         function removerItem(id) {
@@ -302,7 +294,7 @@
         }
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
-            renderizarProdutos(produtos, 'produtos-grid');
+            renderizarProdutos(bolos, 'bolos-grid');
             renderizarProdutos(paes, 'paes-grid');
         });
         // Adicione isso no final do seu script
@@ -325,7 +317,7 @@
 
     <header class="header">
         <div class="header-nome">
-            <img src="images/icons/BlôBom2.svg" alt="BlôBom">
+            <img src="images/icons/Blôbom.svg" alt="BlôBom">
         </div>
 
         <div class="header-logo">
@@ -345,16 +337,21 @@
 
 
     </header>
-    <main class="produtos-container" id="produtos">
-        <h2 class="produtos-titulo">Nossos Bolos Especiais</h2>
-        <div class="produtos-grid" id="produtos-grid"></div>
+    <main>
+        <!-- Seção de Bolos -->
+        <section class="produtos-container" id="produtos">
+            <h2 class="produtos-titulo">Nossos Bolos Especiais</h2>
+            <div class="produtos-grid" id="bolos-grid"></div>
+        </section>
+
+        <!-- Seção de Pães -->
         <section class="produtos-container" id="paes">
             <h2 class="produtos-titulo">Nossos Pães Especiais</h2>
             <div class="produtos-grid" id="paes-grid"></div>
         </section>
     </main>
     <div class="cart-modal">
-        <h2>Sua cesta 🧺</h2>
+        <h2> Minha cesta</h2>
         <div class="cart-items"></div>
         <div class="cart-total">Total: R$ 0,00</div>
         <button class="whatsapp-btn" onclick="enviarPedido()">

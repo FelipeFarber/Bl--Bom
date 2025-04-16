@@ -20,7 +20,8 @@
 }
 
 .header-nome img {
-  height: 90px;
+  margin-top: 25px;
+  height: 120px;
   width: auto;
   transition: transform 0.3s ease;
 }
@@ -88,7 +89,7 @@
 }
 
 .produto-card {
-  background: white;
+  background: rgb(255, 255, 255);
   border-radius: 15px;
   padding: 1.5rem;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -124,7 +125,7 @@
 
 .btn-adicionar {
   background: var(--cor-primaria);
-  color: white;
+  color: rgb(0, 0, 0);
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 25px;
@@ -205,7 +206,8 @@
   }
 
   .header-nome img {
-      height: 32px;
+    
+      height: 90px;
       width: auto;
       object-fit: contain;
   }
@@ -218,8 +220,10 @@
 
   .header-logo img {
       height: 100px;
-      width: 50px;
-      min-width: 50px;
+      width: 100px;
+      object-fit: contain;
+      margin-top: 10px;
+      
   }
 
   .nav-menu {
