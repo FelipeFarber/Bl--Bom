@@ -1,32 +1,3 @@
-.btn-adicionar.added {
-  background: #e0522e !important;
-  transform: scale(0.95);
-}
-.btn-adicionar {
-  position: relative;
-  transition: 
-      background 0.6s ease,
-      transform 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28),
-      box-shadow 0.5s ease;
-}
-
-.btn-adicionar:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 5px;
-  height: 5px;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.btn-adicionar:active:after {
-  animation: ripple 0.9s ease-out;
-}
-
 @keyframes ripple {
   0% {
       transform: translate(-50%, -50%) scale(1);
@@ -38,7 +9,7 @@
   }
 }
 .btn-adicionar.added {
-  animation: confirmAdd 0.10s ease;
+  animation: confirmAdd 0.3s ease;
 }
 
 @keyframes confirmAdd {
@@ -46,98 +17,6 @@
   50% { transform: scale(0.95); }
   100% { background: initial; }
 }
-
-.cart-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  width: 90%;
-  max-width: 500px;
-  background: rgb(243, 221, 96);
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1000;
-  
-}
-.cart-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #eee;
-}
-
-.cart-header img {
-  width: 10px;
-  height: 10px;
-}
-
-/* Botão Remover */
-.btn-remover {
-  background: #ac4545;
-  color: #ffffff;
-  border: 1px solid #000000;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9em;
-}
-
-.btn-remover:hover {
-  background: #ee1818;
-  border-color: #000000;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.btn-remover i {
-  font-size: 1.1em;
-}
-.cart-modal.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.cart-modal:active {
-  cursor: grabbing;
-}
-.cart-item-image {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 15px;
-  transition: transform 0.3s ease;
-}
-.cart-item-image:hover {
-  transform: scale(1.1);
-}
-.cart-items {
-  max-height: 60vh;
-  overflow-y: auto;
-  margin: 1rem 0;
-}
-.btn-remover {
-  transition: 
-      background 0.3s ease,
-      transform 0.3s ease,
-      opacity 0.3s ease;
-}
-.cart-item.removing {
-  animation: removeAnimation 0.5s forwards;
-}
-
 @keyframes removeAnimation {
   from {
       opacity: 1;
@@ -165,7 +44,7 @@
 
 /* Animação ao remover item */
 .btn-remover.removing {
-  animation: removeItem 0.6s ease forwards;
+  animation: removeItem 0.5s ease forwards;
 }
 
 @keyframes removeItem {
@@ -191,9 +70,178 @@
       margin: 0;
   }
 }
+.cart-modal {
+  transform: translate3d(120%, 0, 0);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.cart-modal.active {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+/* Animação ao adicionar produtos */
+@keyframes itemAdded {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.05); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+.cart-pulse {
+  animation: itemAdded 0.6s ease;
+}
+
+@keyframes highlightItem {
+  0% { background: rgba(0, 0, 0, 0.3); }
+  100% { background: transparent; }
+}
+
+.new-item {
+  animation: highlightItem 1.5s ease-out;
+}
+
+.btn-adicionar.added {
+  background: #e0522e !important;
+  transform: scale(0.95);
+}
+.btn-adicionar {
+  position: relative;
+  transition: 
+      background 0.6s ease,
+      transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+      box-shadow 0.3s ease;
+}
+
+.btn-adicionar:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.btn-adicionar:active:after {
+  animation: ripple 0.6s ease-out;
+}
+
+
+
+.cart-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 90%;
+  max-width: 500px;
+  background: rgb(243, 221, 96);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  
+}
+.cart-header {
+  text-align: initial;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  
+}
+
+.close-cart {
+  background: burlywood;
+  margin-top: -120px;
+  margin-right: -20px;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  
+  transition: color 0.3s ease;
+  padding: 0 10px;
+}
+.close-cart:hover {
+  color: #ff4444;
+}
+.cart-header img {
+  width: 10px;
+  height: 10px;
+}
+
+/* Botão Remover */
+.btn-remover {
+  background: #ac4545;
+  color: #ffffff;
+  border: 1px solid #000000;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+}
+
+.btn-remover:hover {
+ 
+  border-color: #000000;
+  transform: translateY(-1px);
+  
+}
+
+.btn-remover i {
+  font-size: 1.1em;
+}
+.cart-modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cart-modal:active {
+  cursor: grabbing;
+}
+.cart-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.cart-item-image:hover {
+  transform: scale(1.1);
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+ border-radius: 30px;
+  
+}
+.btn-remover {
+  transition: 
+      background 0.2s ease,
+      transform 0.2s ease,
+      opacity 0.2s ease;
+}
+.cart-item.removing {
+  animation: removeAnimation 0.3s forwards;
+}
 
 .cart-item.removing {
-  animation: itemRemoval 0.5s forwards;
+  animation: itemRemoval 0.3s forwards;
 }
 
 /* Garantir que os itens ocultos não afetem o layout */
@@ -212,16 +260,21 @@
 }
 
 .cart-item:hover {
-  background: #f1cf09;
-  border-radius: 30px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: #345f2fa1;
   cursor: pointer;
   z-index: 1;
   position: relative;   
   overflow: hidden;
-  border: 1px solid #000000;
+  
 }
+   .item-info {
+        flex-grow: 1;
+    }
 
+    .btn-remover {
+        margin-left: auto;
+        white-space: nowrap;
+    }
 .item-info h4 {
   color: #000000;
   margin-bottom: 5px;
@@ -314,7 +367,7 @@
 }
 
 .quantity-controls button:hover {
-  background: #e9ecef;
+  background: #ffffff;
   transform: scale(1.1);
 }
 

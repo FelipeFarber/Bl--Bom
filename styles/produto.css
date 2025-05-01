@@ -52,7 +52,7 @@
 }
 
 .produto-card {
-  background: rgb(236, 214, 117);
+  background: rgb(129, 63, 96);
   border-radius: 15px;
   padding: 1.5rem;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -82,7 +82,7 @@
 }
 
 .btn-adicionar {
-  background: var(--cor-primaria);
+  background: #E8A87C; ;
   color: #000000;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -96,4 +96,67 @@
 .btn-adicionar:hover {
   background: #ceb424;
   transform: translateY(-2px);
+}
+/* Tags de status */
+.produto-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.produto-tag.novidade {
+  background: #dbb13e;
+  color: white;
+}
+
+.produto-tag.indisponivel {
+  background: #f44336;
+  color: white;
+}
+
+/* Estilo para produtos indisponíveis */
+.produto-card.indisponivel {
+  position: relative;
+  opacity: 0.7;
+}
+
+.produto-card.indisponivel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.5);
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.preco-risco {
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.preco-risco::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  width: calc(100% + 10px);
+  height: 2px;
+  background: #f44336;
+  transform: translateY(-50%);
+}
+
+/* Botão desabilitado */
+.btn-adicionar:disabled {
+  background: #ddc36b;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
