@@ -28,27 +28,38 @@
             <img src="images/icons/Blôblom.svg" alt="Logo">
         </div>
 
-        <nav class="nav-menu">
-            <a href="#produtos" class="nav-link">Produtos</a>
-            <a href="#contato" class="nav-link">Contato</a>
-            <div class="cart-icon" onclick="toggleCart()">
-                <i class="fas fa-shopping-cart"></i>
-                <div class="cart-count">0</div>
-            </div>
-        </nav>
+     <nav class="nav-menu">
+  <div class="nav-dropdown">
+    <a href="#produtos" class="nav-link">Produtos ▼</a>
+    <div class="dropdown-content">
+      <a href="#bolos">Bolos Caseiros</a>
+      <a href="#paes">Pães Caseiros</a>
+    </div>
+  </div>
+  <a href="#contato" class="nav-link">Contato</a>
+  <div class="cart-icon" onclick="toggleCart()">
+    <i class="fas fa-shopping-cart"></i>
+    <div class="cart-count">0</div>
+  </div>
+</nav>
     </header>
     <main>
         <!-- Seção de Bolos -->
-        <section class="produtos-container" id="produtos">
-            <h2 class="produtos-titulo">Nossos Bolos Especiais</h2>
-            <div class="produtos-grid" id="bolos-grid"></div>
-        </section>
+       <section class="produtos-container" id="produtos">
+    <h2 class="produtos-titulo">Produtos</h2>
+    
+    <!-- Subseção de Bolos -->
+    <div class="subsecao" id="bolos">
+      <h3 class="subsecao-titulo">Bolos Caseiros</h3>
+      <div class="produtos-grid" id="bolos-grid"></div>
+    </div>
 
-        <!-- Seção de Pães -->
-        <section class="produtos-container" id="paes">
-            <h2 class="produtos-titulo">Nossos Pães Especiais</h2>
-            <div class="produtos-grid" id="paes-grid"></div>
-        </section>
+    <!-- Subseção de Pães -->
+    <div class="subsecao" id="paes">
+      <h3 class="subsecao-titulo">Pães Caseiros</h3>
+      <div class="produtos-grid" id="paes-grid"></div>
+    </div>
+  </section>
     </main>
     <div class="cart-modal">
         <div class="cart-header">
