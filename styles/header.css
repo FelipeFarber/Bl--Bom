@@ -234,27 +234,37 @@
     grid-template-columns: auto 1fr auto;
     padding: 0 1rem;
   }
- .header-nome {
-    height: 60px;
-  }
+
   .header-nome img {
-    height: 70px;
-    align-items: start;
+    height: 40px;
+     margin-top: 30px;
   }
   .header-logo img {
-    height: 60px;
+    height: 70px;
+    margin-top: 15px;
   }
 
-  .nav-menu {
-    margin-top: 55px;
-    gap: 10px;
+ .nav-menu {
+    gap: 1rem;
+    flex-wrap: nowrap;
+    justify-content: flex-end; /* Alinha à direita */
+    width: 100%;
   }
-
+.nav-link {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    white-space: nowrap; /* Mantém o texto em linha única */
+  }
+   .nav-dropdown {
+    order: -1; /* Coloca "Produtos" primeiro */
+    margin-right: auto; /* Empurra "Contato" para a direita */
+  }
+ .cart-icon {
+    order: 2; /* Mantém o carrinho no final */
+  }
+}
   .produtos-container {
     margin-top: 120px;
   }
 
-  .dropdown-content {
-    min-width: 140px;
-  }
-}
+ 
