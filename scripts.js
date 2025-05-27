@@ -4,7 +4,7 @@
             
                 {
         id: 1,
-        nome: 'Bolo de Chocolate',
+        nome: 'Chocolate',
         imagem: 'images/bolodechocolate.jpeg',
         preco: 35.00,
         peso: '600g',
@@ -14,8 +14,8 @@
     },
             {
                 id: 2,
-                nome: 'Bolo de Laranja Natural',
-                imagem:'images/bolodelaranja.jpg',
+                nome: 'Cenoura com  Chocolate',
+                imagem:'images/bolodecenoura.jpg',
                 preco: 35.00,
                 peso: '500g',
                 calorias: '280 kcal/fatia',
@@ -35,7 +35,7 @@
            // },
             {
                 id: 4,
-                nome: 'Bolo de Banana',
+                nome: 'Banana',
                 imagem: 'images/bolodebanana.jpeg',
                 preco: 35.00,
                 peso: '500g',
@@ -55,7 +55,7 @@
             //},
             {
                 id: 6,
-                nome: 'Bolo de Fubá com Goiabada',
+                nome: 'Fubá com Goiabada',
                 imagem: 'images/bolodefuba.jpeg',
                 preco: 35.00,
                 peso: '500g',
@@ -64,8 +64,8 @@
             },
             {
                 id: 7,
-                nome: 'Bolo de Fubá Cremoso',
-                imagem: 'images/bolodelimao.jpeg',
+                nome: 'Fubá Cremoso',
+                imagem: 'images/bolodefubacremoso.jpg',
                 preco: 35.00,
                 peso: '500g',
                 calorias: '280 kcal/fatia',
@@ -75,7 +75,7 @@
             },
             {
                 id: 8,
-                nome: 'Bolo de Maçã e Canela',
+                nome: 'Maçã e Canela',
                 imagem: 'images/bolodemaçaecanela.jpeg',
                 preco: 35.00,
                 peso: '500g',
@@ -86,7 +86,7 @@
             },
             {
                 id: 9,
-                nome: 'Bolo de Milho',
+                nome: 'Milho',
                 imagem: 'images/bolodemilho.png',
                 preco: 35.00,
                 peso: '500g',
@@ -293,17 +293,19 @@ function renderizarCarrinho() {
         function enviarPedido() {
             const numero = '5511959426239';
             const mensagem = encodeURIComponent(
-                `*Pedido BlôBom* \n\n` +
+                `Pedido BlôBom \n\n` +
                 carrinho.map(item =>
                     `➤ ${item.nome}\n` +
                     `Quantidade: ${item.quantidade}\n` +
-                    `Valor Unitário: R$ ${item.preco.toFixed(2).replace('.', ',')}\n` +
+                    `Valor: R$ ${item.preco.toFixed(2).replace('.', ',')}\n` +
                     `Subtotal: R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}\n`
                 ).join('\n') +
                 `\n*Total: R$ ${carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0).toFixed(2).replace('.', ',')}*` +
                 `\n\n*Informações Adicionais:*\n` +
                 `• Todos os bolos e pães são feitos artesanalmente\n` +
                 `• Prazo de entrega: 48 horas\n` +
+                `• Entregamos até 2km\n` +
+                `• Retirada no local: Rua Perequê,621\n` +
                 `• Formas de pagamento: PIX ou dinheiro`
             );
             window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');

@@ -67,21 +67,20 @@
 }
 
 .produto-card {
-  background: rgb(146, 106, 52);
+  background: rgb(230, 175, 104);
   border: 2px solid #000000;
   border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 6px 20px rgba(234, 170, 105, 0.1);
+  box-shadow: 0 6px 20px rgba(223, 163, 103, 0.1);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
 }
 .produto-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(234, 170, 105, 0.15);
+  box-shadow: 0 12px 25px rgba(255, 149, 44, 0.15);
 }
 .produto-card::before {
-  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -92,7 +91,6 @@
 }
 
 .produto-card:hover::after {
-  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -122,13 +120,13 @@
 }
 .produto-info h3 {
   font-family: 'Inter', sans-serif;
-  font-size: 1.4em;
-  color: #2c1a0d;
+  font-size: 1.6em;
+  color: #000000;
   margin-bottom: 0.8rem;
 }
 .produto-preco {
-  font-size: 1.4em;
-  color: rgb(209, 129, 63);
+  font-size: 1.6em;
+  color: rgb(255, 255, 255);
   margin: 0.5rem 0;
    font-size: 1.6em;
   font-weight: 700;
@@ -140,14 +138,14 @@
   display: grid;
   gap: 2px;
   padding: 12px 0;
-  border-top: 1px solid #eee4da;
+  border-top: 1px solid #000000;
   margin-top: 12px;
 }
 .produto-detalhes p {
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   font-size: 0.95em;
-  color: #6d4c35;
+  color: #000000;
 }
 .produto-detalhes p::before {
   content: '•';
@@ -155,7 +153,7 @@
 }
 .btn-adicionar {
   background: linear-gradient(135deg, #ff6600 0%, #ad621b 100%);
-  color: rgb(233, 118, 25);
+  color: rgb(0, 0, 0);
   border: none;
   padding: 1rem;
   border-radius: 15px;
