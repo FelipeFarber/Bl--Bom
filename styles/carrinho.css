@@ -1,3 +1,177 @@
+/* Cabeçalho do Carrinho */
+.cart-header {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.cart-header h2 {
+  font-size: 1.8em;
+  color: #814514;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-item {
+  background: rgba(185, 127, 39, 0.9);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 15px;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #3d964c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.item-info h4 {
+  color: #2c1a0d;
+  margin: 0 0 5px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.item-info p {
+  color: #6d4c35;
+  margin: 0;
+  font-size: 0.95em;
+  display: flex;
+  gap: 8px;
+}
+
+/* Preços Destacados */
+.item-info p span {
+  font-weight: 700;
+  color: #c56e33;
+}
+.btn-remover {
+  background: none;
+  color: #c56e33;
+  border: 1px solid #e0d7d1;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-remover:hover {
+  background: #b63b37;
+  border-color: #c56e33;
+  transform: translateY(-4px);
+  box-shadow: 0 2px 6px rgba(197, 110, 51, 0.1);
+}
+
+.btn-remover i {
+  color: inherit;
+}
+.cart-total {
+  background: #2c1a0d;
+  color: #000000;
+  padding: 18px;
+  border-radius: 12px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3em;
+}
+
+.cart-total:before {
+  content: '$';
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+@keyframes gentleBounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.cart-count {
+  animation: gentleBounce 0.6s ease;
+  background: #c56e33;
+  color: white;
+  box-shadow: 0 3px 8px rgba(197, 110, 51, 0.3);
+}
+
+.cart-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(145deg, #ffffff 0%, #fff5eb 100%);
+}
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn i {
+  font-size: 1.4em;
+}
+.close-cart {
+  background: none;
+  color: #6d4c35;
+  font-size: 1.8em;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-cart:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #c56e33;
+  transform: rotate(90deg);
+}
+.cart-items {
+  display: grid;
+  gap: 12px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Scrollbar Estilizada */
+.cart-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+  background: #c56e33;
+  border-radius: 4px;
+}
 @keyframes ripple {
   0% {
       transform: translate(-50%, -50%) scale(1);
@@ -90,7 +264,7 @@
 }
 
 .cart-pulse {
-  animation: itemAdded 0.6s ease;
+  animation: itemAdded 0.7s ease;
 }
 
 @keyframes highlightItem {
@@ -425,3 +599,4 @@
 .cart-items {
   overflow: hidden;
 }
+

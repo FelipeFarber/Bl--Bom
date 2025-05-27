@@ -1,5 +1,5 @@
 .produtos-container {
-  padding: 20px 20px 40px;
+ padding: 40px 20px;
   margin-top: 30px;
 }
 
@@ -15,15 +15,14 @@
 }
 
 .produtos-titulo::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background-color: #E8A87C;
-  border-radius: 2px;
+  position: relative;
+  display: block;
+  width: auto;
+  height: auto;
+  background: none;
+  transform: none;
+  font-size: 0.6em;
+  margin-top: 10px;
 }
 #paes {
   background-color: #c28131;
@@ -37,8 +36,24 @@
 /* Versão mobile */
 @media (max-width: 768px) {
   .produtos-titulo {
-      font-size: 2rem;
-      margin-bottom: 30px;
+    font-size: 2.2rem;
+    margin: 1em 0;
+  }
+
+  .produtos-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+    margin-top: 40px;
+  }
+
+  .produto-imagem {
+    height: 200px;
+  }
+
+  .btn-adicionar {
+    padding: 0.8rem;
+    font-size: 0.95em;
   }
 }
 
@@ -52,50 +67,115 @@
 }
 
 .produto-card {
-  background: rgb(129, 63, 96);
-  border-radius: 15px;
+  background: rgb(146, 106, 52);
+  border: 2px solid #000000;
+  border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 20px rgba(234, 170, 105, 0.1);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+.produto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(234, 170, 105, 0.15);
+}
+.produto-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.produto-card:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #e8a87c;
+  animation: highlightBar 0.6s ease;
+}
+
+@keyframes highlightBar {
+  from { width: 0 }
+  to { width: 100% }
 }
 
 .produto-imagem {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+  height: 250px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+.produto-imagem:hover {
+  transform: scale(1.03);
 }
 
 .produto-info {
   margin-top: 1rem;
 }
-
+.produto-info h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4em;
+  color: #2c1a0d;
+  margin-bottom: 0.8rem;
+}
 .produto-preco {
   font-size: 1.4em;
   color: rgb(209, 129, 63);
   margin: 0.5rem 0;
+   font-size: 1.6em;
+  font-weight: 700;
+  margin: 1rem 0;
 }
+
 
 .produto-detalhes {
-  font-size: 0.9em;
-  color: #000000;
-  margin: 0.5rem 0;
+  display: grid;
+  gap: 2px;
+  padding: 12px 0;
+  border-top: 1px solid #eee4da;
+  margin-top: 12px;
 }
-
+.produto-detalhes p {
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95em;
+  color: #6d4c35;
+}
+.produto-detalhes p::before {
+  content: '•';
+  color: #c56e33;
+}
 .btn-adicionar {
-  background: #E8A87C; ;
-  color: #000000;
+  background: linear-gradient(135deg, #ff6600 0%, #ad621b 100%);
+  color: rgb(233, 118, 25);
   border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 1rem;
-  transition: all 0.3s ease;
+  padding: 1rem;
+  border-radius: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-adicionar:hover {
-  background: #ceb424;
   transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(234, 170, 105, 0.4);
+  background: linear-gradient(135deg, #ffc506 0%, #e8a87c 100%);
+}
+.btn-adicionar:disabled {
+  background: #e0d7d1;
+  color: #8d6e63;
 }
 /* Tags de status */
 .produto-tag {
