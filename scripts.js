@@ -5,7 +5,7 @@
                 {
         id: 1,
         nome: 'Chocolate',
-        imagem: 'images/bolodechocolate.jpeg',
+        imagem: 'images/bolodechocolate.png',
         preco: 35.00,
         peso: '600g',
         calorias: '350 kcal/fatia',
@@ -89,20 +89,20 @@
                 nome: 'Milho',
                 imagem: 'images/bolodemilho.png',
                 preco: 35.00,
-                peso: '500g',
+                peso: '1,13kg',
+                calorias: '253 kcal/fatia',
+                contem: ['milho', 'Glúten'],
+            },
+
+           {
+                id: 10,
+                nome: 'Arroz',
+               imagem: 'images/arroz.jpeg',
+              preco: 35.00,
+               peso: '500g',
                 calorias: '280 kcal/fatia',
                 contem: ['Glúten']
             },
-
-           // {
-           //     id: 10,
-           //     nome: 'Bolo Formigueiro',
-           //     imagem: 'images/boloformigueiro.jpg',
-           //     preco: 35.00,
-           //     peso: '500g',
-           //     calorias: '280 kcal/fatia',
-           //     contem: ['Glúten']
-            //},
           
            
         ];
@@ -325,3 +325,33 @@ function renderizarCarrinho() {
                 });
             }, 3000); 
         });
+        document.querySelectorAll('.produto-card').forEach(card => {
+  // Para toque em mobile
+  card.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      const detalhes = this.querySelector('.produto-detalhes-expansivel');
+      const isFechar = e.target.closest('.fechar-detalhes');
+      
+      if (isFechar) {
+        detalhes.style.opacity = '0';
+        detalhes.style.visibility = 'hidden';
+      } else {
+        // Fecha outros cards abertos
+        document.querySelectorAll('.produto-detalhes-expansivel').forEach(d => {
+          if (d !== detalhes) {
+            d.style.opacity = '0';
+            d.style.visibility = 'hidden';
+          }
+        });
+        
+        // Abre o atual
+        detalhes.style.opacity = '1';
+        detalhes.style.visibility = 'visible';
+      }
+    }
+  });
+});
+// No evento de clique/toque:
+card.setAttribute('aria-expanded', 'true');
+// Ao fechar:
+card.setAttribute('aria-expanded', 'false');
