@@ -38,7 +38,7 @@
             {
                 id: 4,
                 nome: 'Banana',
-                imagem: 'images/bolodebanana.jpeg',
+                imagem: 'images/bolobanana.png',
                 preco: 35.00,
                 peso: 'aprox*760g',
                 calorias: '280 kcal/fatia',
@@ -68,7 +68,7 @@
             {
                 id: 7,
                 nome: 'Fubá Cremoso',
-                imagem: 'images/bolodefubacremoso.jpg',
+                imagem: 'images/bolofubacremoso.png',
                 preco: 25.00,
                 peso: 'aprox*700g',
                 calorias: '280 kcal/fatia',
@@ -79,7 +79,7 @@
             {
                 id: 8,
                 nome: 'Mandioca',
-                imagem: 'images/bolodemaçaecanela.jpeg',
+                imagem: 'images/bolomandioca.png',
                 preco: 27.00,
                 peso: '700g',
                 calorias: '280 kcal/fatia',
