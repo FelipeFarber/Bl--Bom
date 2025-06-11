@@ -6,21 +6,23 @@
         id: 1,
         nome: 'Chocolate',
         imagem: 'images/bolodechocolate.png',
-        preco: 35.00,
+        preco: 30.00,
         peso: '600g',
         calorias: '350 kcal/fatia',
         contem: ['Glúten', 'Lactose'],
+      
        
     },
             {
                 id: 2,
                 nome: 'Cenoura com  Chocolate',
-                imagem:'images/bolodecenoura.jpg',
-                preco: 35.00,
-                peso: '500g',
+                imagem:'images/bolodecenoura.png',
+                preco: 38.00,
+                peso: 'aprox*1000g',
                 calorias: '280 kcal/fatia',
-                contem: ['Glúten']
-                
+                contem: ['Glúten'],
+                 novidade: true
+            
             },
             //{
                // id: 3,
@@ -38,9 +40,10 @@
                 nome: 'Banana',
                 imagem: 'images/bolodebanana.jpeg',
                 preco: 35.00,
-                peso: '500g',
+                peso: 'aprox*760g',
                 calorias: '280 kcal/fatia',
-                contem: ['Glúten']
+                contem: ['Glúten'],
+                 
             },
             //{
             //    id: 5,
@@ -57,8 +60,8 @@
                 id: 6,
                 nome: 'Fubá com Goiabada',
                 imagem: 'images/bolodefuba.jpeg',
-                preco: 35.00,
-                peso: '500g',
+                preco: 27.00,
+                peso: 'aprox*920g',
                 calorias: '280 kcal/fatia',
                 contem: ['Glúten']
             },
@@ -66,21 +69,21 @@
                 id: 7,
                 nome: 'Fubá Cremoso',
                 imagem: 'images/bolodefubacremoso.jpg',
-                preco: 35.00,
-                peso: '500g',
+                preco: 25.00,
+                peso: 'aprox*700g',
                 calorias: '280 kcal/fatia',
-                contem: ['Glúten'],
+                contem: ['Açúcar'],
                 indisponivel: false, 
                 novidade: true       
             },
             {
                 id: 8,
-                nome: 'Maçã e Canela',
+                nome: 'Mandioca',
                 imagem: 'images/bolodemaçaecanela.jpeg',
-                preco: 35.00,
-                peso: '500g',
+                preco: 27.00,
+                peso: '700g',
                 calorias: '280 kcal/fatia',
-                contem: ['Glúten'],
+                contem: ['Açúcar'],
                 indisponivel: false, 
                 novidade: true       
             },
@@ -88,10 +91,10 @@
                 id: 9,
                 nome: 'Milho',
                 imagem: 'images/bolodemilho.png',
-                preco: 35.00,
+                preco: 27.00,
                 peso: '1,13kg',
                 calorias: '253 kcal/fatia',
-                contem: ['milho', 'Glúten'],
+                contem: ['Milho','Açúcar'],
             },
 
            {
@@ -99,9 +102,10 @@
                 nome: 'Arroz',
                imagem: 'images/arroz.jpeg',
               preco: 35.00,
-               peso: '500g',
+               peso: 'aprox*700g',
                 calorias: '280 kcal/fatia',
-                contem: ['Glúten']
+                contem: ['Glúten'],
+                 novidade: true
             },
           
            
@@ -231,10 +235,10 @@
                 }, 500);
             }
         }
-        function renderizarProdutos(produtosArray, targetId) {
+function renderizarProdutos(produtosArray, targetId) {
     const grid = document.getElementById(targetId);
     grid.innerHTML = produtosArray.map(produto => `
-        <div class="produto-card ${produto.indisponivel ? 'indisponivel' : ''}">
+      <div class="produto-card ${produto.indisponivel ? 'indisponivel' : ''}">
             ${produto.novidade ? '<div class="produto-tag novidade">Novidade!</div>' : ''}
             ${produto.indisponivel ? '<div class="produto-tag indisponivel">Indisponível</div>' : ''}
             
@@ -259,6 +263,8 @@
                     ${produto.indisponivel ? 'Em breve' : 'Adicionar ao Carrinho'}
                 </button>
             </div>
+
+            
         </div>
     `).join('');
 }
@@ -314,6 +320,7 @@ function renderizarCarrinho() {
         document.addEventListener('DOMContentLoaded', () => {
             renderizarProdutos(bolos, 'bolos-grid');
             renderizarProdutos(paes, 'paes-grid');
+        
         });
      
         window.addEventListener('load', () => {
@@ -325,33 +332,6 @@ function renderizarCarrinho() {
                 });
             }, 3000); 
         });
-        document.querySelectorAll('.produto-card').forEach(card => {
-  // Para toque em mobile
-  card.addEventListener('click', function(e) {
-    if (window.innerWidth <= 768) {
-      const detalhes = this.querySelector('.produto-detalhes-expansivel');
-      const isFechar = e.target.closest('.fechar-detalhes');
       
-      if (isFechar) {
-        detalhes.style.opacity = '0';
-        detalhes.style.visibility = 'hidden';
-      } else {
-        // Fecha outros cards abertos
-        document.querySelectorAll('.produto-detalhes-expansivel').forEach(d => {
-          if (d !== detalhes) {
-            d.style.opacity = '0';
-            d.style.visibility = 'hidden';
-          }
-        });
-        
-        // Abre o atual
-        detalhes.style.opacity = '1';
-        detalhes.style.visibility = 'visible';
-      }
-    }
-  });
-});
-// No evento de clique/toque:
-card.setAttribute('aria-expanded', 'true');
-// Ao fechar:
-card.setAttribute('aria-expanded', 'false');
+
+

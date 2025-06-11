@@ -239,80 +239,127 @@
   opacity: 0.7;
 }
 .produto-detalhes-expansivel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 249, 242, 0.95);
-  backdrop-filter: blur(5px);
-  border-radius: 15px;
-  padding: 1.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
-  overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 249, 242, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.produto-card:hover .produto-detalhes-expansivel,
-.produto-card:focus-within .produto-detalhes-expansivel {
-  opacity: 1;
-  visibility: visible;
+.produto-detalhes-expansivel.ativo {
+    opacity: 1;
+    visibility: visible;
 }
 
 .detalhes-conteudo {
-  position: relative;
-  height: 100%;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .fechar-detalhes {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #c56e33;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #c56e33;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
 }
 
-/* Estilo para as listas de informações */
+.fechar-detalhes:hover {
+    background: #f8f0e6;
+    transform: rotate(90deg);
+}
+
+.detalhes-conteudo h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #c56e33;
+    font-size: 1.8rem;
+}
+
+.detalhes-conteudo .produto-imagem {
+    max-height: 200px;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 10px;
+}
+
 .info-nutricional, .alergenos {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
+    margin: 25px 0;
+}
+
+.info-nutricional h4, .alergenos h4 {
+    color: #c56e33;
+    border-bottom: 2px solid #f0d9c0;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.info-nutricional ul, .alergenos ul {
+    padding-left: 20px;
 }
 
 .info-nutricional li, .alergenos li {
-  margin-bottom: 0.5rem;
-  position: relative;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 20px;
 }
 
 .info-nutricional li::before {
-  content: "•";
-  position: absolute;
-  left: -1rem;
-  color: #e8a87c;
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #e8a87c;
+    font-size: 1.2rem;
 }
 
 .alergenos li::before {
-  content: "⚠️";
-  position: absolute;
-  left: -1.5rem;
+    content: "⚠️";
+    position: absolute;
+    left: 0;
 }
+
+/* Mobile */
 @media (max-width: 768px) {
-  .produto-detalhes-expansivel {
-    padding: 1rem;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .produto-card:focus-within .produto-detalhes-expansivel {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .fechar-detalhes {
-    display: block !important; /* Sempre visível em mobile */
-  }
+    .detalhes-conteudo {
+        padding: 20px 15px;
+        max-height: 85vh;
+    }
+    
+    .detalhes-conteudo h3 {
+        font-size: 1.5rem;
+        padding-right: 30px;
+    }
+    
+    .fechar-detalhes {
+        top: 10px;
+        right: 10px;
+    }
 }
