@@ -255,14 +255,27 @@ function adicionarComCobertura(coberturaId) {
             document.removeEventListener('mouseup', endDrag);
             document.querySelector('.cart-modal h2').addEventListener('mousedown', startDrag);
         }
-
+function scrollParaNovoItem() {
+  if (carrinho.length > 1) {
+    const wrapper = document.querySelector('.cart-items-wrapper');
+    const items = document.querySelectorAll('.cart-item');
+    
+    // Role para o último item adicionado
+    if (items.length > 0) {
+      const lastItem = items[items.length - 1];
+      lastItem.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  }
+}
 
         function atualizarCarrinho() {
-            localStorage.setItem('carrinho', JSON.stringify(carrinho));
-            document.querySelector('.cart-count').textContent = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
-            renderizarCarrinho();
-            console.log('Carrinho atualizado:', carrinho);
-        }
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  document.querySelector('.cart-count').textContent = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+  renderizarCarrinho();
+  
+  // Role para o novo item após atualização
+  setTimeout(scrollParaNovoItem, 300);
+}
         const todosProdutos = [...bolos, ...paes];
 
         function adicionarAoCarrinho(produtoId, event) {
@@ -388,6 +401,22 @@ function renderizarCarrinho() {
         function toggleCart() {
             document.querySelector('.cart-modal').classList.toggle('active');
         }
+        function toggleCart() {
+   const cartModal = document.querySelector('.cart-modal');
+  const isActive = cartModal.classList.toggle('active');
+  
+  if (isActive && carrinho.length > 0) {
+    // Espere pela renderização e role
+    setTimeout(() => {
+      scrollParaNovoItem();
+    }, 100);
+  }
+  
+  // Em mobile, travar o scroll do body quando o carrinho estiver aberto
+  if (window.innerWidth <= 768) {
+    document.body.style.overflow = isActive ? 'hidden' : '';
+  }
+}
 
         function enviarPedido() {
             const numero = '5511959426239';
@@ -426,6 +455,16 @@ function renderizarCarrinho() {
                 });
             }, 3000); 
         });
+        function ajustarAlturaMobile() {
+  if (window.innerWidth <= 768) {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+}
+
+// Inicializar e monitorar redimensionamento
+window.addEventListener('resize', ajustarAlturaMobile);
+ajustarAlturaMobile();
       
 
 
