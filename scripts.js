@@ -5,7 +5,7 @@
                 {
         id: 1,
         nome: 'Chocolate',
-        imagem: 'images/bolodechocolate.png',
+        imagem: 'images/bolodechocolate.jpeg',
         preco: 30.00,
         peso: '600g',
         calorias: '350 kcal/fatia',
