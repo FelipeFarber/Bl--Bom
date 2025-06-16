@@ -116,3 +116,24 @@
     grid-template-columns: 1fr;
   }
 }
+@media (max-width: 768px) {
+  #coberturas-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente se necessário */
+  }
+
+  .cobertura-card {
+    width: 100%;
+    max-width: 300px; /* Largura máxima para manter a proporção */
+    margin: 0 auto 1.5rem; /* Centraliza e adiciona espaçamento */
+  }
+}
+
+/* Para telas muito pequenas (menor que 400px) */
+@media (max-width: 400px) {
+  .cobertura-card {
+    max-width: 280px;
+  }
+}
