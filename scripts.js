@@ -68,7 +68,7 @@
             {
                 id: 7,
                 nome: 'Fubá Cremoso',
-                imagem: 'images/bolofubacremoso.png',
+                imagem: 'images/bolodefubacremoso.jpg',
                 preco: 25.00,
                 peso: 'aprox*700g',
                 calorias: '280 kcal/fatia',
