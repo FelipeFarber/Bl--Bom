@@ -15,7 +15,7 @@
     },
             {
                 id: 2,
-                nome: 'Cenoura com  Chocolate',
+                nome: 'Cenoura',
                 imagem:'images/bolodecenoura.png',
                 preco: 38.00,
                 peso: 'aprox*1000g',
@@ -134,6 +134,92 @@
                 novidade: false
             }
             ];
+            const coberturas = [
+  { id: 13, nome: 'Ganashe de chocolate', preco: 15.00, descricao: 'Ganashe de chocolate ',imagem: 'images/gchocolate.png'} ,
+  { id: 14, nome: 'Ganashe de chocolate Branco', preco: 15.00, descricao: 'Ganashe de chocolate Branco',imagem: 'images/gcbranco.png' },
+  { id: 15, nome: 'Ninho', preco: 15.00, descricao: 'Ninho',imagem: 'images/gninho.png' }
+];
+
+let produtoSelecionado = null;
+
+function selecionarParaCobertura(produtoId) {
+  produtoSelecionado = todosProdutos.find(p => p.id === produtoId);
+  
+  // Renderiza as coberturas
+  renderizarCoberturas();
+  
+  // Rola até a seção de coberturas
+  document.getElementById('coberturas').scrollIntoView({ behavior: 'smooth' });
+}
+function selecionarParaCobertura(produtoId) {
+  produtoSelecionado = todosProdutos.find(p => p.id === produtoId);
+  
+  // Atualiza o nome do produto selecionado
+  document.getElementById('produto-selecionado-nome').textContent = produtoSelecionado.nome;
+  
+  renderizarCoberturas();
+  document.getElementById('coberturas').scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderizarCoberturas() {
+  const grid = document.getElementById('coberturas-grid');
+  if (!grid) return;
+  
+  grid.innerHTML = coberturas.map(cobertura => `
+    <div class="cobertura-card">
+      <img src="${cobertura.imagem}" alt="${cobertura.nome}" class="cobertura-imagem">
+      <div class="cobertura-info">
+        <h3>${cobertura.nome}</h3>
+        <p>${cobertura.descricao}</p>
+        <div class="cobertura-preco">+ R$ ${cobertura.preco.toFixed(2).replace('.', ',')}</div>
+      </div>
+      <button class="btn-adicionar-cobertura" 
+              onclick="adicionarComCobertura(${cobertura.id})">
+        Adicionar
+      </button>
+    </div>
+  `).join('');
+}
+
+function adicionarComCobertura(coberturaId) {
+    if (!produtoSelecionado) return;
+    
+    const cobertura = coberturas.find(c => c.id === coberturaId);
+    
+    // Criar ID único baseado em timestamp
+    const uniqueId = `${Date.now()}-${produtoSelecionado.id}-${cobertura.id}`;
+    
+    const itemCombinado = {
+        ...produtoSelecionado,
+        id: uniqueId, // ID único
+        nome: `${produtoSelecionado.nome} + ${cobertura.nome}`,
+        preco: produtoSelecionado.preco + cobertura.preco,
+        cobertura: cobertura.nome,
+        precoCobertura: cobertura.preco
+    };
+
+
+  // Adiciona ao carrinho
+  const itemExistente = carrinho.find(item => item.id === itemCombinado.id);
+  
+  if (itemExistente) {
+    itemExistente.quantidade++;
+  } else {
+    carrinho.push({ ...itemCombinado, quantidade: 1 });
+  }
+
+  atualizarCarrinho();
+  
+  // Feedback visual
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = `✔️ ${itemCombinado.nome} adicionado!`;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
          // Variável para controlar o último item adicionado
     let ultimoItemAdicionado = null;
 
@@ -178,6 +264,7 @@
             console.log('Carrinho atualizado:', carrinho);
         }
         const todosProdutos = [...bolos, ...paes];
+
         function adicionarAoCarrinho(produtoId, event) {
         const produto = todosProdutos.find(p => p.id === produtoId); // Alterado para todosProdutos
         if (!produto) return;
@@ -204,41 +291,42 @@
 
 
         function removerItem(id) {
-            // Encontrar o índice do item no carrinho
-            const itemIndex = carrinho.findIndex(item => item.id === id);
+    // Converter para string para lidar com números e strings compostas
+    const idString = id.toString();
+    
+    // Encontrar o índice do item no carrinho
+    const itemIndex = carrinho.findIndex(item => item.id.toString() === idString);
 
-            if (itemIndex === -1) return;
+    if (itemIndex === -1) return;
 
-            // Encontrar todos os elementos do carrinho
-            const cartItems = document.querySelectorAll('.cart-item');
+    // Encontrar todos os elementos do carrinho
+    const cartItems = document.querySelectorAll('.cart-item');
 
-            // Encontrar o elemento correto usando data-attribute
-            const itemElement = Array.from(cartItems).find(item => {
-                return parseInt(item.dataset.id) === id;
-            });
+    // Encontrar o elemento correto
+    const itemElement = Array.from(cartItems).find(item => {
+        return item.dataset.id.toString() === idString;
+    });
 
-            if (itemElement) {
-                // Aplicar animação primeiro
-                itemElement.classList.add('removing');
+    if (itemElement) {
+        // Aplicar animação
+        itemElement.classList.add('removing');
 
-                // Esperar a animação terminar antes de remover
-                setTimeout(() => {
-                    if (carrinho[itemIndex].quantidade > 1) {
-                        carrinho[itemIndex].quantidade--;
-                    } else {
-                        carrinho.splice(itemIndex, 1);
-                    }
-
-                    // Atualizar localStorage e DOM
-                    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-                    atualizarCarrinho();
-                }, 500);
+        setTimeout(() => {
+            if (carrinho[itemIndex].quantidade > 1) {
+                carrinho[itemIndex].quantidade--;
+            } else {
+                carrinho.splice(itemIndex, 1);
             }
-        }
-function renderizarProdutos(produtosArray, targetId) {
+
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            atualizarCarrinho();
+        }, 500);
+    }
+}
+    function renderizarProdutos(produtosArray, targetId) {
     const grid = document.getElementById(targetId);
     grid.innerHTML = produtosArray.map(produto => `
-      <div class="produto-card ${produto.indisponivel ? 'indisponivel' : ''}">
+        <div class="produto-card ${produto.indisponivel ? 'indisponivel' : ''}">
             ${produto.novidade ? '<div class="produto-tag novidade">Novidade!</div>' : ''}
             ${produto.indisponivel ? '<div class="produto-tag indisponivel">Indisponível</div>' : ''}
             
@@ -256,15 +344,20 @@ function renderizarProdutos(produtosArray, targetId) {
                     <p>Contém: ${produto.contem.join(', ')}</p>
                 </div>
                 
-                <button class="btn-adicionar" 
-                    onclick="${!produto.indisponivel ? `adicionarAoCarrinho(${produto.id}, event)` : ''}" 
-                    ${produto.indisponivel ? 'disabled' : ''}>
-                    
-                    ${produto.indisponivel ? 'Em breve' : 'Adicionar ao Carrinho'}
-                </button>
+                <div class="produto-botoes">
+                  <button class="btn-adicionar" 
+                      onclick="${!produto.indisponivel ? `adicionarAoCarrinho(${produto.id}, event)` : ''}" 
+                      ${produto.indisponivel ? 'disabled' : ''}>
+                      
+                      ${produto.indisponivel ? 'Em breve' : 'Adicionar'}
+                  </button>
+                  ${!produto.indisponivel ? `
+                    <button class="btn-cobertura" onclick="selecionarParaCobertura(${produto.id})">
+                      Cobertura
+                    </button>
+                  ` : ''}
+                </div>
             </div>
-
-            
         </div>
     `).join('');
 }
@@ -275,14 +368,14 @@ function renderizarCarrinho() {
     const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
 
     itemsContainer.innerHTML = carrinho.map(item => `
-        <div class="cart-item" data-id="${item.id}">
+        <div class="cart-item" data-id="${item.id}"> <!-- Mantido como string -->
             <img src="${item.imagem}" alt="${item.nome}" 
                  onerror="this.src='images/fallback.jpg'">
             <div class="item-info">
                 <h4>${item.nome}</h4>
                 <p>${item.quantidade}x R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
             </div>
-            <button class="btn-remover" onclick="removerItem(${item.id})">
+            <button class="btn-remover" onclick="removerItem('${item.id}')"> <!-- Passar como string -->
                 <i class="fas fa-trash-alt"></i>
                 Remover
             </button>
@@ -320,6 +413,7 @@ function renderizarCarrinho() {
         document.addEventListener('DOMContentLoaded', () => {
             renderizarProdutos(bolos, 'bolos-grid');
             renderizarProdutos(paes, 'paes-grid');
+            renderizarCoberturas();
         
         });
      
