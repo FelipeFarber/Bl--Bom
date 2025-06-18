@@ -345,6 +345,37 @@
     position: absolute;
     left: 0;
 }
+/* Estilo para exibição de estoque */
+.produto-estoque {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0.8rem 0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  display: inline-block;
+  background: #4CAF50;
+  color: white;
+}
+
+.produto-estoque.estoque-baixo {
+  background: #FF9800;
+  animation: pulseWarning 1.5s infinite;
+}
+
+.produto-estoque.esgotado {
+  background: #F44336;
+}
+
+@keyframes pulseWarning {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+/* Para produtos indisponíveis */
+.produto-card.indisponivel .produto-estoque {
+  background: #9E9E9E;
+}
 
 /* Mobile */
 @media (max-width: 768px) {

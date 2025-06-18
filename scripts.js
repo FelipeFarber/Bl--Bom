@@ -5,9 +5,9 @@
                 {
         id: 1,
         nome: 'Chocolate',
-        imagem: 'images/bolodechocolate.jpeg',
-        preco: 30.00,
-        peso: '600g',
+        imagem: 'images/bolodechocolate.png',
+        preco: 23.00,
+        peso: '700g',
         calorias: '350 kcal/fatia',
         contem: ['Glúten', 'Lactose'],
       
@@ -17,10 +17,11 @@
                 id: 2,
                 nome: 'Cenoura',
                 imagem:'images/bolodecenoura.png',
-                preco: 38.00,
-                peso: 'aprox*1000g',
+                preco: 25.00,
+                peso: '700g',
                 calorias: '280 kcal/fatia',
                 contem: ['Glúten'],
+                estoque: 1, 
                  novidade: true
             
             },
@@ -39,8 +40,8 @@
                 id: 4,
                 nome: 'Banana',
                 imagem: 'images/bolobanana.png',
-                preco: 35.00,
-                peso: 'aprox*760g',
+                preco: 24.00,
+                peso: '700g',
                 calorias: '280 kcal/fatia',
                 contem: ['Glúten'],
                  
@@ -67,7 +68,7 @@
             },
             {
                 id: 7,
-                nome: 'Fubá Cremoso',
+                nome: 'Fubá',
                 imagem: 'images/bolodefubacremoso.jpg',
                 preco: 25.00,
                 peso: 'aprox*700g',
@@ -354,7 +355,7 @@ function scrollParaNovoItem() {
                 
                 <div class="produto-detalhes">
                     <p>${produto.peso} • ${produto.calorias}</p>
-                    <p>Contém: ${produto.contem.join(', ')}</p>
+                    <p>Detalhes: ${produto.contem.join(', ')}</p>
                 </div>
                 
                 <div class="produto-botoes">
