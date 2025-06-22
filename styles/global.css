@@ -46,7 +46,7 @@ body {
   text-align: center;
   font-family: 'Arial', sans-serif;
   margin: 0;
-  background-color:rgb(240, 240, 138);
+  background-color:#f0f08a;
   color: var(--cor-texto);
   scroll-behavior: smooth;
   padding-top: 80px; 

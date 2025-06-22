@@ -8,8 +8,8 @@ const bolos = [
     imagem: 'images/bolodechocolate.png',
     preco: 25.00,
     peso: '700g',
-    calorias: '350 kcal/fatia',
-    contem: ['Glúten', 'Lactose'],
+    calorias: '280 kcal/fatia',
+    contem: ['Glúten, Lactose'],
     permiteCobertura: true,
 
 
@@ -21,7 +21,7 @@ const bolos = [
     preco: 25.00,
     peso: '700g',
     calorias: '280 kcal/fatia',
-    contem: ['Glúten'],
+    contem: ['Glúten, Lactose'],
     novidade: true,
     permiteCobertura: true,
 
@@ -44,7 +44,7 @@ const bolos = [
     preco: 25.00,
     peso: '700g',
     calorias: '280 kcal/fatia',
-    contem: ['Glúten'],
+    contem: ['Lactose'],
     permiteCobertura: true,
 
   },
@@ -64,21 +64,20 @@ const bolos = [
     nome: 'Fubá com Goiabada',
     imagem: 'images/bolodefuba.jpeg',
     preco: 27.00,
-    peso: 'aprox*920g',
+    peso: '700g',
     calorias: '280 kcal/fatia',
-    contem: ['Glúten'],
+    contem: ['Derivado de milho, Lactose'],
     permiteCobertura: true,
   },
   {
     id: 7,
     nome: 'Fubá',
-    imagem: 'images/bolodefubacremoso.jpg',
+    imagem: 'images/bolofuba.png',
     preco: 25.00,
     peso: 'aprox*700g',
     calorias: '280 kcal/fatia',
-    contem: ['Açúcar'],
+    contem: ['Derivado de milho, Lactose'],
     indisponivel: false,
-    novidade: true,
     permiteCobertura: true,
   },
   {
@@ -88,7 +87,7 @@ const bolos = [
     preco: 27.00,
     peso: '700g',
     calorias: '280 kcal/fatia',
-    contem: ['Açúcar'],
+    contem: ['Amendoim'],
     indisponivel: false,
     novidade: true,
     permiteCobertura: true,
@@ -98,9 +97,9 @@ const bolos = [
     nome: 'Milho',
     imagem: 'images/bolodemilho.png',
     preco: 27.00,
-    peso: '1,13kg',
+    peso: '700g',
     calorias: '253 kcal/fatia',
-    contem: ['Milho', 'Açúcar'],
+    contem: ['Derivado de milho, Lactose'],
     permiteCobertura: true,
   },
 
@@ -108,8 +107,8 @@ const bolos = [
     id: 10,
     nome: 'Arroz',
     imagem: 'images/arroz.jpeg',
-    preco: 35.00,
-    peso: 'aprox*700g',
+    preco: 30.00,
+    peso: '700g',
     calorias: '280 kcal/fatia',
     contem: ['Glúten'],
     novidade: true,
@@ -121,12 +120,12 @@ const bolos = [
 const paes = [
   {
     id: 11,
-    nome: 'Delicioso Pão Caseiro Artesanal',
-    imagem: 'images/paocaseiro.jpeg',
-    preco: 25.00,
+    nome: 'Pão Caseiro  Artesanal Tradicional ',
+    imagem: 'images/paocaseiro.png',
+    preco: 20.00,
     peso: '700g',
-    calorias: '150 kcal/unidade',
-    contem: ['Glúten'],
+    calorias: '',
+    contem: ['Glúten, Lactose'],
     indisponivel: false,
     novidade: false,
     permiteCobertura: true,
@@ -135,11 +134,11 @@ const paes = [
   {
     id: 12,
     nome: 'Pão Caseiro Artesanal Integral  ',
-    imagem: 'images/paocaseirointegral.jpeg',
-    preco: 30.00,
+    imagem: 'images/paointegral.png',
+    preco: 25.00,
     peso: '700g',
-    calorias: '150 kcal/unidade',
-    contem: ['Glúten'],
+    calorias: '',
+    contem: ['Glúten, Lactose'],
     indisponivel: false,
     novidade: false,
     permiteCobertura: true,
@@ -147,11 +146,11 @@ const paes = [
     {
     id: 13,
     nome: 'Pão Caseiro Artesanal Recheado com Calabresa',
-    imagem: 'images/paocaseirointegral.jpeg',
+    imagem: 'images/calabresa.png',
     preco: 35.00,
     peso: '700g',
-    calorias: '150 kcal/unidade',
-    contem: ['Glúten'],
+    calorias: '',
+    contem: ['Glúten, Lactose'],
     indisponivel: false,
     novidade: false,
     permiteCobertura: true,
@@ -159,11 +158,11 @@ const paes = [
     {
     id: 14,
     nome: 'Pão Caseiro Artesanal Recheado com Queijo Coalho',
-    imagem: 'images/paocaseirointegral.jpeg',
+    imagem: 'images/paocaseiro.png',
     preco: 35.00,
     peso: '700g',
-    calorias: '150 kcal/unidade',
-    contem: ['Glúten'],
+    calorias: '',
+    contem: ['Glúten,Lactose'],
     indisponivel: false,
     novidade: false,
     permiteCobertura: true,
@@ -330,7 +329,7 @@ function endDrag() {
   document.querySelector('.cart-modal h2').addEventListener('mousedown', startDrag);
 }
 function scrollParaNovoItem() {
-  if (carrinho.length > 1) {
+  if (carrinho.length > 2) {
     const wrapper = document.querySelector('.cart-items-wrapper');
     const items = document.querySelectorAll('.cart-item');
 
@@ -348,7 +347,7 @@ function atualizarCarrinho() {
   renderizarCarrinho();
 
   // Role para o novo item após atualização
-  setTimeout(scrollParaNovoItem, 300);
+  setTimeout(scrollParaNovoItem, 100);
 }
 const todosProdutos = [...bolos, ...paes];
 
