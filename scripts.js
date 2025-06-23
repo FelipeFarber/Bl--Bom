@@ -501,10 +501,9 @@ function enviarPedido() {
       `Subtotal: R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}\n`
     ).join('\n') +
     `\n*Total: R$ ${carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0).toFixed(2).replace('.', ',')}*` +
-    `\n\n*Informações Adicionais:*\n` +
+    `\n\n*Informações:*\n` +
     `• Todos os bolos e pães são feitos artesanalmente\n` +
-    `• Prazo de entrega: 48 horas\n` +
-    `• Entregamos até 2km\n` +
+    `• Prazo de entrega: Até 48 horas\n` +
     `• Retirada no local: Rua Perequê,621\n` +
     `• Formas de pagamento: PIX ou dinheiro`
   );
