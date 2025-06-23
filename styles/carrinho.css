@@ -331,7 +331,6 @@
   padding: 15px;
   
 }
-
 .close-cart {
   background: burlywood;
   margin-top: -120px;
@@ -417,18 +416,15 @@
   animation: itemRemoval 0.3s forwards;
 }
 
-/* Garantir que os itens ocultos não afetem o layout */
 .cart-item {
   transition: all 0.3s ease;
 }
 
-/* Itens do Carrinho */
 .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-
   transition: background 0.3s ease;
 }
 
@@ -594,8 +590,5 @@
   z-index: 1;
 }
 
-/* Para evitar "piscadas" durante a remoção */
-.cart-items {
-  overflow: hidden;
-}
+
 

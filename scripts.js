@@ -110,7 +110,7 @@ const bolos = [
     preco: 30.00,
     peso: '700g',
     calorias: '280 kcal/fatia',
-    contem: ['Glúten'],
+    contem: ['Glúten, Lactose'],
     novidade: true,
     permiteCobertura: true,
   },
@@ -475,7 +475,7 @@ function toggleCart() {
 }
 function toggleCart() {
   const cartModal = document.querySelector('.cart-modal');
-  const isActive = cartModal.classList.toggle('active');
+  const isActive = cartModal.classList.toggle('active');  
 
   if (isActive && carrinho.length > 0) {
     // Espere pela renderização e role
